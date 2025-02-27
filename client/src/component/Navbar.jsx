@@ -12,7 +12,7 @@ function Navbar() {
 
 
     return (
-        <nav className='flex flex-row justify-between items-center w-full p-3 bg-white fixed' >
+        <nav className='flex flex-row justify-between items-center w-full p-3 bg-white fixed z-10' >
             <div className='flex flex-row gap-10' >
             <h2 className='text-black text-4xl' >RivalRay</h2>
                 <input className='text-black bg-stone-200 px-5 rounded-4xl w-[25vw]' type='text' placeholder='Search...' />
