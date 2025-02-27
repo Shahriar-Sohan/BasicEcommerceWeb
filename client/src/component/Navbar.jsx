@@ -23,11 +23,16 @@ function Navbar() {
                 <li><Link to='/about' >About</Link></li>
             </ul>
             <div className='flex flex-row gap-2 mr-4'>
-                <img className='size-8'
+                <div className='flex justify-center items-center' >
+                <img className='size-8 relative'
                     src={isHovered ? Cart : StaticCart} alt='Cart'
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 />
+                <span className='flex justify-center items-center bg-white border-1 text-black size-5 top-[60%] right-15 rounded-full absolute'>
+                    0
+                </span>
+                </div>
                 <img className='size-8'
                     src={ProfilePic} alt='ProfilePic' />
             </div>
