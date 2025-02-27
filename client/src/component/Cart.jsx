@@ -3,11 +3,19 @@
 
 
 
-function Cart() {
+
+function Cart({setCartOpen}) {
+    
+
+
+
+
+
     return (
         <div className="z-20 h-full w-80 bg-stone-100 text-black p-8 shadow-lg rounded-l-3xl fixed right-0 flex justify-start items-center flex-col" >
             <button
                 className="absolute flex justify-center items-center size-10 top-4 right-4 text-2xl text-gray-600 hover:text-gray-800"
+                onClick={()=>setCartOpen(false)}
             >
                 x
             </button>
