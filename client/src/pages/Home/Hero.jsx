@@ -1,4 +1,4 @@
-import banner from '../assets/banner-1.webp'
+import banner from '../../assets/banner-1.webp'
 
 
 

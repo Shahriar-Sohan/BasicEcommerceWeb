@@ -12,15 +12,15 @@ function Navbar() {
 
 
     return (
-        <nav className='flex flex-row justify-between items-center w-full p-3 bg-white' >
+        <nav className='flex flex-row justify-between items-center w-full p-3 bg-white fixed' >
             <div className='flex flex-row gap-10' >
             <h2 className='text-black text-4xl' >RivalRay</h2>
                 <input className='text-black bg-stone-200 px-5 rounded-4xl w-[25vw]' type='text' placeholder='Search...' />
             </div>
             <ul className='flex flex-row gap-5 mr-50'>
                 <li><Link to='/' >Home</Link></li>
-                <li><Link to='/about' >about</Link></li>
-                <li><Link to='/products' >products</Link></li>
+                <li><Link to='/products' >Products</Link></li>
+                <li><Link to='/about' >About</Link></li>
             </ul>
             <div className='flex flex-row gap-2 mr-4'>
                 <img className='size-8'
