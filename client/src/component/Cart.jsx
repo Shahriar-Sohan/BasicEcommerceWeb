@@ -1,13 +1,28 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { CartContext } from "./CartContext"
+import Quantity from "./Quantity"
+import ExtractPrice from "./PriceExtractor"
 
 
 
 
 
 function Cart() {
-    const {setCartOpen} = useContext(CartContext)
+    const { setCartOpen, cart, addToCart, removeFromCart } = useContext(CartContext)
+    const [products, setProducts] = useState([])
+    const [totalPrice, setTotalPrice] = useState(0)
 
+
+
+
+    useEffect(() => {
+        fetch('/product.json')
+            .then(response => response.json())
+            .then(data => {
+                setProducts(data.filter(product => cart.includes(product.id)))
+                setTotalPrice(ExtractPrice(data, cart))
+            })
+    }, [cart])
 
 
 
@@ -15,30 +30,49 @@ function Cart() {
         <div className="z-20 h-full w-80 bg-stone-100 text-black p-8 shadow-lg rounded-l-3xl fixed right-0 flex justify-start items-center flex-col" >
             <button
                 className="absolute flex justify-center items-center size-10 top-4 right-4 text-2xl text-gray-600 hover:text-gray-800"
-                onClick={()=>setCartOpen(false)}
+                onClick={() => setCartOpen(false)}
             >
                 x
             </button>
             <h2 className="text-2xl font-bold mb-8 uppercase">Shopping Cart</h2>
+            {products.map(product => {
+                const quantity = Quantity(cart, product.id);
+                const productPrice = product.price * quantity;
 
-            <div className="cart-item flex justify-between w-full py-3 border-b border-gray-700">
-                <span className="item-name text-lg ">Item 1</span>
-                <div className="flex flex-row justify-center items-center gap-2" >
+                return (
+                    <div className="cart-item flex justify-between items-center w-full py-3 border-b border-gray-700" key={product.id}>
+                        <div className="flex gap-2">
+                            <img className="size-10 rounded-md aspect-square" src={product.image} alt="" />
+                            <span className="item-name text-lg">{product.title}</span>
+                        </div>
 
-                    <button className="size-6 p-3 bg-gray-600 text-white rounded-full text-base flex items-center justify-center hover:bg-gray-500 transition-all duration-300">
-                        -
-                    </button>
-                    <span className="item-quantity ">x1</span>
-                    <button className="size-6 p-3 bg-gray-600 text-white rounded-full text-base flex items-center justify-center hover:bg-gray-500 transition-all duration-300">
-                        +
-                    </button>
+                        <div className="flex flex-col justify-center items-center">
+                            <span className="font-medium">{productPrice.toFixed(2)}$</span>
+                            <div className="flex flex-row justify-center items-center gap-2">
+                                <button
+                                    className="size-6 p-3 bg-gray-600 text-white rounded-full text-base flex items-center justify-center hover:bg-gray-500 transition-all duration-300"
+                                    onClick={() => removeFromCart(product.id)}
+                                >
+                                    -
+                                </button>
+                                <span className="item-quantity">x{quantity}</span>
+                                <button
+                                    className="size-6 p-3 bg-gray-600 text-white rounded-full text-base flex items-center justify-center hover:bg-gray-500 transition-all duration-300"
+                                    onClick={() => addToCart(product.id)}
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
+            <span className="ml-[50%] font-bold" >Total: {totalPrice.toFixed(2)}$</span>
 
-                </div>
-
-            </div>
 
             <div className="cart-footer mt-8 text-center">
-                <button className="checkout-button py-3 px-6 text-xl bg-gray-800 text-white border border-gray-700 rounded-full hover:bg-gray-500 transition-all duration-300 transform hover:scale-105">
+                <button className="checkout-button py-3 px-6 text-xl bg-gray-800 text-white border border-gray-700 rounded-full hover:bg-gray-500 transition-all duration-300 transform hover:scale-105 disabled:bg-gray-600 disabled:text-gray-400 disabled:border-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:pointer-events-none"
+                    disabled={cart.length ? false : true} >
                     Checkout
                 </button>
             </div>

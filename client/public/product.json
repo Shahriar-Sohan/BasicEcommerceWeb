@@ -13,7 +13,7 @@
         "title": "Drake Hoodie",
         "price": 79.99,
         "category": "Clothing",
-        "gender": "Male",
+        "gender": "Men",
         "brand": "OVO",
         "image": "/images/drake.webp"
     },
@@ -21,7 +21,7 @@
         "id": 3,
         "title": "Kendrick Lamar Vinyl",
         "price": 29.99,
-        "category": "Music",
+        "category": "Clothing",
         "gender": "Unisex",
         "brand": "Top Dawg",
         "image": "/images/kendrickLamar.jpg"
@@ -30,8 +30,8 @@
         "id": 4,
         "title": "R&M Sneakers",
         "price": 129.99,
-        "category": "Shoes",
-        "gender": "Female",
+        "category": "Women",
+        "gender": "Women",
         "brand": "Rick & Morty",
         "image": "/images/randm.webp"
     },
@@ -39,28 +39,28 @@
         "id": 5,
         "title": "Running Shoes",
         "price": 119.99,
-        "category": "Shoes",
-        "image": "/images/runningShoes.jpg"
+        "category": "Footwear",
+        "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/ca929f7e-f433-46b7-8d83-1a6171c172ce/NIKE+REVOLUTION+7+EASYON.png"
     },
     {
         "id": 6,
-        "title": "Wool Sweater",
+        "title": "Top G Hoodie",
         "price": 89.99,
         "category": "Clothing",
-        "image": "/images/woolSweater.jpg"
+        "image": "https://www.leatherjacketblack.com/wp-content/uploads/2024/10/Top-G-Andrew-Tate-Black-Pullover-Hoodie.webp"
     },
     {
         "id": 7,
-        "title": "Canvas Tote Bag",
+        "title": "Rolex Watch",
         "price": 39.99,
         "category": "Accessories",
-        "image": "/images/canvasToteBag.jpg"
+        "image": "https://www.sandiegouniontribune.com/wp-content/uploads/migration/2023/12/22/0000018c-923c-df38-a19c-db7f4f740001.jpg?w=1800&resize=1800,1800"
     },
     {
         "id": 8,
-        "title": "Slim Fit Jeans",
+        "title": "Kid's T-Shirt",
         "price": 79.99,
-        "category": "Clothing",
-        "image": "/images/slimFitJeans.jpg"
+        "category": "Kids",
+        "image": "https://assets.medpagetoday.net/media/images/103xxx/103925.jpg?width=0.8"
     }
 ]

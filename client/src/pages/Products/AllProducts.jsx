@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { CartContext } from '@/component/CartContext';
+import { useContext, useEffect, useState } from 'react';
 
 
 function AllProducts() {
     const [products, setProducts] = useState([])
+    const { addToCart } = useContext(CartContext)
+    
 
     useEffect(()=>{
         fetch('/product.json')
@@ -15,7 +18,7 @@ function AllProducts() {
     return (
         <div className="ml-[16.67%] mt-15 flex-1 px-4 py-8">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {products.map((product) => (
+                {products.map(product => (
                     <div
                         key={product.id}
                         className="cursor-pointer group relative overflow-hidden rounded-lg border bg-white shadow-sm transition-all hover:shadow-md"
@@ -35,7 +38,8 @@ function AllProducts() {
                             <p className="mt-2 text-xl font-semibold text-gray-900">
                                 ${product.price.toFixed(2)}
                             </p>
-                            <button className="mt-4 w-full rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-black/25">
+                            <button className="mt-4 w-full rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-black/25"
+                                onClick={()=>addToCart(product.id)} >
                                 Add to Cart
                             </button>
                         </div>

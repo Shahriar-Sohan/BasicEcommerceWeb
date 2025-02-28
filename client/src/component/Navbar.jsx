@@ -1,15 +1,16 @@
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from './CartContext'
 
 import Cart from '../assets/Cart.Gif'
 import StaticCart from '../assets/StaticCart.png'
 import ProfilePic from '../assets/person.svg'
-import { CartContext } from './CartContext'
+
 
 
 function Navbar() {
     const [isHovered, setIsHovered] = useState(false)
-    const { setCartOpen } = useContext(CartContext)
+    const { setCartOpen, cart } = useContext(CartContext)
     
 
 
@@ -30,7 +31,7 @@ function Navbar() {
             </ul>
 
             {/* Cart and ProfliePic */}
-            <div className='flex flex-row gap-2 mr-4'>
+            <div className='flex flex-row gap-4 mr-4'>
 
                 {/* Cart */}
                 <div className='flex justify-center items-center cursor-pointer'
@@ -41,8 +42,8 @@ function Navbar() {
                         onMouseLeave={() => setIsHovered(false)}
                         
                     />
-                    <span className='flex justify-center items-center bg-white border-1 text-black size-5 top-[60%] right-15 rounded-full absolute'>
-                        0
+                    <span className='flex justify-center items-center bg-white border-1 text-black size-6 top-[60%] right-14 rounded-full absolute'>
+                        {cart.length}
                     </span>
                 </div>
 
