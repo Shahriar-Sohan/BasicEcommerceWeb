@@ -1,6 +1,11 @@
 import { categories, brands } from "../Home/Section"; 
 
 function SideBar() {
+
+    
+
+
+
     return (
         <div className="h-screen flex flex-col w-1/6 fixed mt-15 p-10 gap-6 z-5 ">
             <h1 className="text-lg font-bold mb-2 border-b pb-2 w-full text-center">

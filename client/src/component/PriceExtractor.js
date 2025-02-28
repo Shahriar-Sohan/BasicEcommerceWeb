@@ -13,4 +13,5 @@ function ExtractPrice(arrOfObj, arrOfId){
     return total
 }
 
+
 export default ExtractPrice

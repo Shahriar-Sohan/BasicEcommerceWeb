@@ -1,23 +1,20 @@
 import { CartContext } from '@/component/CartContext';
+import { ProductContext } from '@/component/ProductContext';
 import { useContext, useEffect, useState } from 'react';
 
 
 function AllProducts() {
-    const [products, setProducts] = useState([])
+
+    const { products } = useContext(ProductContext)
     const { addToCart } = useContext(CartContext)
     
 
-    useEffect(()=>{
-        fetch('/product.json')
-            .then(response=>response.json())
-            .then(data=>setProducts(data))
-            .catch(error => console.error('Error fetching product data:',error));
-    },[])
 
 
     return (
         <div className="ml-[16.67%] mt-15 flex-1 px-4 py-8">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                
                 {products.map(product => (
                     <div
                         key={product.id}
@@ -45,6 +42,7 @@ function AllProducts() {
                         </div>
                     </div>
                 ))}
+                
             </div>
         </div>
     )
