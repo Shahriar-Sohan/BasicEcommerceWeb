@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "title": "Diddy T-Shirt",
+        "price": 49.99,
+        "category": "Clothing",
+        "gender": "Unisex",
+        "brand": "Sean John",
+        "image": "/images/Diddy.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Drake Hoodie",
+        "price": 79.99,
+        "category": "Clothing",
+        "gender": "Male",
+        "brand": "OVO",
+        "image": "/images/drake.webp"
+    },
+    {
+        "id": 3,
+        "title": "Kendrick Lamar Vinyl",
+        "price": 29.99,
+        "category": "Music",
+        "gender": "Unisex",
+        "brand": "Top Dawg",
+        "image": "/images/kendrickLamar.jpg"
+    },
+    {
+        "id": 4,
+        "title": "R&M Sneakers",
+        "price": 129.99,
+        "category": "Shoes",
+        "gender": "Female",
+        "brand": "Rick & Morty",
+        "image": "/images/randm.webp"
+    },
+    {
+        "id": 5,
+        "title": "Running Shoes",
+        "price": 119.99,
+        "category": "Shoes",
+        "image": "/images/runningShoes.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Wool Sweater",
+        "price": 89.99,
+        "category": "Clothing",
+        "image": "/images/woolSweater.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Canvas Tote Bag",
+        "price": 39.99,
+        "category": "Accessories",
+        "image": "/images/canvasToteBag.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Slim Fit Jeans",
+        "price": 79.99,
+        "category": "Clothing",
+        "image": "/images/slimFitJeans.jpg"
+    }
+]

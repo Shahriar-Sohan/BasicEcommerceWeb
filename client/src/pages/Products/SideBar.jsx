@@ -17,7 +17,7 @@ function SideBar() {
                                 type="checkbox"
                                 id={category.title}
                             />
-                            <label htmlFor={category.title} className="cursor-pointer">
+                            <label htmlFor={category.title} className="cursor-pointer text-black">
                                 {category.title}
                             </label>
                         </li>
@@ -35,7 +35,7 @@ function SideBar() {
                                 type="checkbox"
                                 id={brand.title}
                             />
-                            <label htmlFor={brand.title} className="cursor-pointer">
+                            <label htmlFor={brand.title} className="cursor-pointer text-black">
                                 {brand.title}
                             </label>
                         </li>

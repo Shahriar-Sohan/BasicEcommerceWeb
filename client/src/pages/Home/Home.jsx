@@ -3,21 +3,22 @@ import Hero from './Hero'
 import Section from './Section'
 import Feature from './FeatureProduct'
 import Cart from '../../component/Cart'
-import { useState } from 'react'
 
-function Home(){
+import { CartContext } from '@/component/CartContext'
+import { useContext } from 'react'
 
-    const [cartOpen, setCartOpen] = useState(false)
+function Home() {
+    const {cartOpen} = useContext(CartContext)
 
 
 
-    return(
+    return (
         <div className='flex flex-col justify-start items-start w-full h-full' >
-            {cartOpen && <Cart setCartOpen={setCartOpen} />}
-            <Navbar cartOpen={setCartOpen} />
-            <Hero/>
-            <Section/>
-            <Feature/>
+            {cartOpen && <Cart />}
+            <Navbar />
+            <Hero />
+            <Section />
+            <Feature />
         </div>
     )
 }

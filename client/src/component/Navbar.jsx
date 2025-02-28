@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Cart from '../assets/Cart.Gif'
 import StaticCart from '../assets/StaticCart.png'
 import ProfilePic from '../assets/person.svg'
+import { CartContext } from './CartContext'
 
 
-function Navbar({cartOpen}) {
+function Navbar() {
     const [isHovered, setIsHovered] = useState(false)
+    const { setCartOpen } = useContext(CartContext)
     
 
 
@@ -32,7 +34,7 @@ function Navbar({cartOpen}) {
 
                 {/* Cart */}
                 <div className='flex justify-center items-center cursor-pointer'
-                    onClick={()=>cartOpen(true)} >
+                    onClick={()=>setCartOpen(true)} >
                     <img className='size-8 relative'
                         src={isHovered ? Cart : StaticCart} alt='Cart'
                         onMouseEnter={() => setIsHovered(true)}

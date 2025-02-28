@@ -1,76 +1,17 @@
-import diddy from '../../assets/mockups/Diddy.jpg'
-import drake from '../../assets/mockups/drake.webp'
-import kendrickLamar from '../../assets/mockups/kendrickLamar.jpg'
-import randm from '../../assets/mockups/randm.webp'
+import { useEffect, useState } from 'react';
 
-const products = [
-    {
-        id: 1,
-        title: "Diddy T-Shirt",
-        price: 49.99,
-        category: "Clothing",
-        gender: "Unisex",
-        brand: "Sean John",
-        image: diddy,
-    },
-    {
-        id: 2,
-        title: "Drake Hoodie",
-        price: 79.99,
-        category: "Clothing",
-        gender: "Male",
-        brand: "OVO",
-        image: drake,
-    },
-    {
-        id: 3,
-        title: "Kendrick Lamar Vinyl",
-        price: 29.99,
-        category: "Music",
-        gender: "Unisex",
-        brand: "Top Dawg",
-        image: kendrickLamar,
-    },
-    {
-        id: 4,
-        title: "R&M Sneakers",
-        price: 129.99,
-        category: "Shoes",
-        gender: "Female",
-        brand: "Rick & Morty",
-        image: randm,
-    },
-    {
-        id: 5,
-        title: "Running Shoes",
-        price: 119.99,
-        category: "Shoes",
-        image: "/placeholder.svg?height=400&width=400",
-    },
-    {
-        id: 6,
-        title: "Wool Sweater",
-        price: 89.99,
-        category: "Clothing",
-        image: "/placeholder.svg?height=400&width=400",
-    },
-    {
-        id: 7,
-        title: "Canvas Tote Bag",
-        price: 39.99,
-        category: "Accessories",
-        image: "/placeholder.svg?height=400&width=400",
-    },
-    {
-        id: 8,
-        title: "Slim Fit Jeans",
-        price: 79.99,
-        category: "Clothing",
-        image: "/placeholder.svg?height=400&width=400",
-    },
-];
 
-export default function AllProducts() {
+function AllProducts() {
+    const [products, setProducts] = useState([])
+
+    useEffect(()=>{
+        fetch('/product.json')
+            .then(response=>response.json())
+            .then(data=>setProducts(data))
+            .catch(error => console.error('Error fetching product data:',error));
+    },[])
+
+
     return (
         <div className="ml-[16.67%] mt-15 flex-1 px-4 py-8">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -104,3 +45,4 @@ export default function AllProducts() {
         </div>
     )
 }
+export default AllProducts
