@@ -24,23 +24,24 @@ This is a fully functional **eCommerce website** built from scratch using **Vite
 ## 📂 Project Structure
 ```
 📦 ecommerce-website
-├── 📂 src
-│   ├── 📂 components  # Reusable UI components and Context API for state management
-│   ├── 📂 pages       # Page components (Home, Product, About me etc.)
-│   ├── 📂 assets      # Images, icons, and other static files
-│   ├── 📜 App.jsx     # Main application file
-│   ├── 📜 main.jsx    # Entry point
-│   ├── 📜 index.css   # Global styles
-├── 📜 package.json    # Project dependencies and scripts
-├── 📜 vite.config.js  # Vite configuration
-└── 📜 README.md       # Project documentation
+├──client
+    ├── 📂 src
+    │   ├── 📂 components  # Reusable UI components and Context API for state management
+    │   ├── 📂 pages       # Page components (Home, Product, About me etc.)
+    │   ├── 📂 assets      # Images, icons, and other static files
+    │   ├── 📜 App.jsx     # Main application file
+    │   ├── 📜 main.jsx    # Entry point
+    │   ├── 📜 index.css   # Global styles
+    ├── 📜 package.json    # Project dependencies and scripts
+    ├── 📜 vite.config.js  # Vite configuration
+    └── 📜 README.md       # Project documentation
 ```
 
 ## 🚀 Installation & Setup
 1. **Clone the repository**
    ```sh
    git clone https://github.com/Shahriar-Sohan/BasicEcommerceWeb.git
-   cd ecommerce-website
+   cd client
    ```
 2. **Install dependencies**
    ```sh
