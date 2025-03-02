@@ -19,12 +19,12 @@ function Navbar() {
 
             {/* Icons and searchBar */}
             <div className='flex flex-row gap-10' >
-                <h2 className='text-black text-4xl' >RivalRay</h2>
+                <h2 className='text-black text-4xl' ><Link to='/' >RivalRay</Link></h2>
                 <input className='text-black bg-stone-200 px-5 rounded-4xl w-[25vw]' type='text' placeholder='Search...' />
             </div>
 
             {/* NavList */}
-            <ul className='flex flex-row gap-5 mr-50'>
+            <ul className='flex flex-row gap-5 mr-50  '>
                 <li><Link to='/' >Home</Link></li>
                 <li><Link to='/products' >Products</Link></li>
                 <li><Link to='/about' >About</Link></li>
