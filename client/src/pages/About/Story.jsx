@@ -6,7 +6,7 @@ function Story() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
                 <div className="bg-gray-100 aspect-square relative">
                     <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                        <span className="text-sm">Our Story Image</span>
+                    <img src="https://img.freepik.com/free-psd/flat-design-fashion-trends-instagram-stories_23-2150467295.jpg" alt="Our Story image" />
                     </div>
                 </div>
                 <div>
