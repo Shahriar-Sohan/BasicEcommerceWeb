@@ -1,9 +1,12 @@
+import CarouselAnimation from "@/component/CarouselAnimation"
 
 
 
 function About() {
     return (
-        <div></div>
+        <div>
+            <CarouselAnimation/>
+        </div>
     )
 }
 
