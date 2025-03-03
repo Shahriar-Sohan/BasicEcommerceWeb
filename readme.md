@@ -27,7 +27,7 @@ This is a fully functional **eCommerce website** built from scratch using **Vite
 ├──client
     ├── 📂 src
     │   ├── 📂 components  # Reusable UI components and Context API for state management
-    │   ├── 📂 pages       # Page components (Home, Product, About me etc.)
+    │   ├── 📂 pages       # Page components (Home, Product, About etc.)
     │   ├── 📂 assets      # Images, icons, and other static files
     │   ├── 📜 App.jsx     # Main application file
     │   ├── 📜 main.jsx    # Entry point

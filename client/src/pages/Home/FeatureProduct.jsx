@@ -13,7 +13,7 @@ function Feature(){
             <h1 className="text-black text-4xl">Featured Products</h1>
             <div className="flex gap-6">
                 {featuredProducts.map(card => (
-                    <div key={card.id} className="border p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 w-60">
+                    <div key={card.id} className="cursor-pointer border p-4 rounded-lg drop-shadow-2xl hover:shadow-2xl transition-all duration-300 w-60">
                         <img src={card.image} alt={card.title} className="w-full h-48 object-cover rounded-md" />
                         <h3 className="text-xl font-semibold mt-4">{card.title}</h3>
                         <p className="text-gray-500">{card.gender}</p>

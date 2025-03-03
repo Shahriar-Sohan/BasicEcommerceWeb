@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from 'react-router-dom'
 import banner1 from "../assets/banner-1.webp";
 import banner2 from "../assets/banner-2.webp";
 import banner3 from "../assets/banner-3.webp";
@@ -50,12 +51,15 @@ function CarouselAnimation() {
         <div className="w-full h-[600px] overflow-hidden">
             <div ref={elementRef} className="flex w-full h-full">
                 {banners.map((data, index) => (
-                    <img
-                        key={index}
-                        src={data}
-                        alt={`Banner ${index}`}
-                        className="flex-shrink-0 w-full h-full object-cover"
-                    />
+                    <Link className="flex-shrink-0 w-full h-full object-cover cursor-pointer" to='/products' >
+                        <img
+                            key={index}
+                            src={data}
+                            alt={`Banner ${index}`}
+                            className="flex-shrink-0 w-full h-full object-cover cursor-pointer"
+                        />
+                    </Link>
+
                 ))}
             </div>
         </div>

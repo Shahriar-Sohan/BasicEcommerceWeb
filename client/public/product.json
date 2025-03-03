@@ -39,6 +39,8 @@
         "id": 5,
         "title": "Running Shoes",
         "price": 119.99,
+        "gender" : "Unisex",
+        "brand" : "Nike",
         "category": "Footwear",
         "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/ca929f7e-f433-46b7-8d83-1a6171c172ce/NIKE+REVOLUTION+7+EASYON.png"
     },
@@ -46,6 +48,8 @@
         "id": 6,
         "title": "Top G Hoodie",
         "price": 89.99,
+        "gender" : "Men",
+        "brand" : "Top G",
         "category": "Clothing",
         "image": "https://www.leatherjacketblack.com/wp-content/uploads/2024/10/Top-G-Andrew-Tate-Black-Pullover-Hoodie.webp"
     },
@@ -54,6 +58,8 @@
         "title": "Rolex Watch",
         "price": 39.99,
         "category": "Accessories",
+        "gender" : "Men",
+        "brand" : "Top G",
         "image": "https://www.sandiegouniontribune.com/wp-content/uploads/migration/2023/12/22/0000018c-923c-df38-a19c-db7f4f740001.jpg?w=1800&resize=1800,1800"
     },
     {
@@ -61,6 +67,8 @@
         "title": "Kid's T-Shirt",
         "price": 79.99,
         "category": "Kids",
+        "gender" : "Unisex",
+        "brand" : "BimBam",
         "image": "https://assets.medpagetoday.net/media/images/103xxx/103925.jpg?width=0.8"
     }
 ]
