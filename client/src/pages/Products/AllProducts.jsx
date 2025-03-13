@@ -1,13 +1,13 @@
 import { CartContext } from '@/component/CartContext';
 import { ProductContext } from '@/component/ProductContext';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 function AllProducts() {
     const { products } = useContext(ProductContext);
     const { addToCart } = useContext(CartContext);
 
     return (
-        <div className="ml-[16.67%] pt-20 pb-16 px-6 bg-gray-50">
+        <div className="ml-[16.67%] pt-22 pb-16 px-6 bg-gray-50">
             <h2 className="text-3xl font-serif font-light text-gray-900 mb-6">
                 Curated Collection
             </h2>

@@ -1,8 +1,9 @@
-import { categories, brands } from "../Home/Section"; 
+import { useContext } from "react";
+import { ProductContext } from "@/component/ProductContext";
 
 function SideBar() {
 
-    
+    const { brands, categories } = useContext(ProductContext)
 
 
 
@@ -16,14 +17,14 @@ function SideBar() {
                 <h2 className="font-semibold mb-2">Category</h2>
                 <ul className="flex flex-col gap-2">
                     {categories.map((category) => (
-                        <li key={category.title} className="flex items-center gap-2 cursor-pointer">
+                        <li key={category} className="flex items-center gap-2 cursor-pointer">
                             <input
                                 className="cursor-pointer w-5 h-5 border-2 border-black accent-black"
                                 type="checkbox"
-                                id={category.title}
+                                id={category}
                             />
                             <label htmlFor={category.title} className="cursor-pointer text-black">
-                                {category.title}
+                                {category}
                             </label>
                         </li>
                     ))}
@@ -34,14 +35,14 @@ function SideBar() {
                 <h2 className="font-semibold mb-2 mt-4">Brand</h2>
                 <ul className="flex flex-col gap-2">
                     {brands.map((brand) => (
-                        <li key={brand.title} className="flex items-center gap-2 cursor-pointer">
+                        <li key={brand} className="flex items-center gap-2 cursor-pointer">
                             <input
                                 className="cursor-pointer w-5 h-5 border-2 border-black accent-black"
                                 type="checkbox"
-                                id={brand.title}
+                                id={brand}
                             />
-                            <label htmlFor={brand.title} className="cursor-pointer text-black">
-                                {brand.title}
+                            <label htmlFor={brand} className="cursor-pointer text-black">
+                                {brand}
                             </label>
                         </li>
                     ))}

@@ -1,5 +1,5 @@
 import { ProductContext } from '@/component/ProductContext'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 
 
 function Feature(){

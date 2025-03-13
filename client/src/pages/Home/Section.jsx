@@ -1,18 +1,14 @@
+import { useContext } from 'react';
 import accessories from '../../assets/accessories.png';
 import men from '../../assets/men.png';
 import women from '../../assets/women.png';
 import kids from '../../assets/kid.png';
 import shoe from '../../assets/shoe.png';
+import { ProductContext } from '@/component/ProductContext';
 
-export const brands = [
-    { title: 'Nike' },
-    { title: 'Adidas' },
-    { title: 'Puma' },
-    { title: 'Gucci' },
-    { title: 'Reebok' }
-];
 
-export const categories = [
+
+const categories = [
     { title: 'Men', image: men, altText: 'Men' },
     { title: 'Women', image: women, altText: 'Women' },
     { title: 'Kids', image: kids, altText: 'Kids' },
@@ -22,6 +18,11 @@ export const categories = [
 
 
 function Section() {
+
+    const { brands } = useContext(ProductContext)
+    
+
+
     return (
         <div className="flex flex-col justify-center items-center w-full my-10 gap-6">
             <h1 className="text-black text-4xl">Shop By Category</h1>
@@ -44,9 +45,9 @@ function Section() {
                 {brands.map((brand) => (
                     <div
                         className="flex flex-col items-center justify-center gap-5 border-solid border-2 p-8 border-black"
-                        key={brand.title}
+                        key={brand}
                     >
-                        <h2 className="text-2xl font-bold">{brand.title}</h2>
+                        <h2 className="text-2xl font-bold">{brand}</h2>
                     </div>
                 ))}
             </div>

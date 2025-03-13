@@ -1,5 +1,5 @@
 import CarouselAnimation from '@/component/CarouselAnimation'
-import banner from '../../assets/banner-1.webp'
+
 
 
 
