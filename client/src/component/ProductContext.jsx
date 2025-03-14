@@ -14,7 +14,18 @@ export function ProductsProvider({children}){
     const [featuredProducts, setFeaturedProducts] = useState([])
     const [brands, setBrands] = useState([])
     const [categories, setCategories] = useState([])
+    const [filter, setFilter] = useState("")
 
+    // switch (filter) {
+    //     case value1:
+    //       // Code to execute if expression === value1
+    //       break;
+    //     case value2:
+    //       // Code to execute if expression === value2
+    //       break;
+    //     default:
+    //       // Code to execute if none of the cases match
+    //   }
 
     useEffect(()=>{
         fetch('/product.json')
@@ -29,7 +40,7 @@ export function ProductsProvider({children}){
     },[])
 
     return (
-        <ProductContext.Provider value={{products, featuredProducts, brands, categories}} >
+        <ProductContext.Provider value={{products, featuredProducts, brands, categories, setFilter}} >
             {children}
         </ProductContext.Provider>
     )

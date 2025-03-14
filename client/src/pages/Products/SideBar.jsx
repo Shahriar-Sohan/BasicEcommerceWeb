@@ -1,10 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductContext } from "@/component/ProductContext";
 
 function SideBar() {
 
-    const { brands, categories } = useContext(ProductContext)
-
+    const { brands, categories, setFilter } = useContext(ProductContext)
+    const [checkedItems, setCheckedItems] = useState({})
+    function categoryCheckbox(event){
+        const { id, checked } = event.target
+        setCheckedItems(prevState=>(
+            { ...prevState, id: checked }
+        ))
+        console.log(`Checkbox with id "${id}" is now ${checked ? "checked" : "unchecked"}`);
+        console.log(checkedItems)
+    }
 
 
     return (
@@ -22,6 +30,8 @@ function SideBar() {
                                 className="cursor-pointer w-5 h-5 border-2 border-black accent-black"
                                 type="checkbox"
                                 id={category}
+                                onChange={categoryCheckbox}
+                                checked={checkedItems.category || false}
                             />
                             <label htmlFor={category.title} className="cursor-pointer text-black">
                                 {category}
