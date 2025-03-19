@@ -1,4 +1,5 @@
 import CarouselAnimation from '@/component/CarouselAnimation'
+import { Link } from 'react-router-dom'
 
 
 
@@ -15,14 +16,15 @@ function Hero() {
                 <div className="absolute bottom-0 left-0 right-0 z-10 p-6 space-y-4">
                     <h1 className="text-3xl font-bold tracking-tight text-white">Summer Collection</h1>
                     <p className="text-gray-200">Discover the latest trends for the season</p>
-
-                    <button className="w-full py-3 px-4 bg-black text-white font-medium rounded-md hover:bg-blue-700">
-                        Shop Now
-                    </button>
+                    <Link to="/products">
+                    <button className="w-full py-3 px-4 bg-black text-white font-medium rounded-md drop-shadow-2xl active:scale-95">
+                            Shop Now
+                        </button>
+                    </Link>
 
                 </div>
             </div>
-            
+
         </div>
     )
 }

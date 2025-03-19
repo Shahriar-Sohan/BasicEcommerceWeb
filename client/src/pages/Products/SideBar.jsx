@@ -37,7 +37,7 @@ function SideBar({ isOpen, onClose }) {
                         Filter
                     </h1>
                     <button 
-                        className="md:hidden text-gray-500"
+                        className="md:hidden text-gray-500 active:scale-80"
                         onClick={onClose}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

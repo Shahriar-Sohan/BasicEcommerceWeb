@@ -17,7 +17,7 @@ function AllProducts() {
                 {products.map(product => (
                     <div
                         key={product.id}
-                        className="cursor-pointer group relative overflow-hidden bg-white border-0 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] shadow-[0_2px_10px_rgb(0,0,0,0.05)]"
+                        className="cursor-pointer group relative overflow-hidden bg-white border-0 active:scale-95 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] shadow-[0_2px_10px_rgb(0,0,0,0.05)]"
                     >
                         <div className="aspect-square overflow-hidden relative">
                             <img
@@ -43,7 +43,7 @@ function AllProducts() {
                                     ${product.price.toFixed(2)}
                                 </p>
                                 <button
-                                    className="bg-transparent border border-gray-800 px-4 py-2 text-sm text-gray-800 transition-colors duration-300 hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500"
+                                    className="bg-transparent border border-gray-800 px-4 py-2 text-sm text-gray-800 transition-colors active:scale-95 duration-300 hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500"
                                     onClick={() => addToCart(product.id)}
                                 >
                                     Add to Cart

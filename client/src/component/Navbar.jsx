@@ -29,9 +29,11 @@ function Navbar() {
             </button>
 
             {/* Logo */}
-            <div className='flex flex-row items-center gap-4'>
-                <h2 className='text-red-800 pl-2 md:pl-4 text-2xl md:text-4xl'><Link to='/'>RivalRay</Link></h2>
-            </div>
+            <h2 className='text-red-800 pl-2 md:pl-4 text-2xl md:text-4xl group'>
+                <Link to='/' className='relative group-hover:scale-100 active:scale-95 transition-transform duration-200'>
+                    RivalRay
+                </Link>
+            </h2>
 
 
 
@@ -43,16 +45,16 @@ function Navbar() {
             </ul>
 
             {/* Cart and ProfilePic */}
-            <div className='flex flex-row gap-6 mr-2'>
+            <div className='flex flex-row gap-6 mr-2 '>
                 {/* Cart */}
-                <div className='flex justify-center items-center cursor-pointer pr-2'
+                <div className='flex justify-center items-center cursor-pointer pr-1.5 '
                     onClick={() => setCartOpen(true)}>
-                    <img className='size-6 md:size-8 relative'
+                    <img className='size-6 md:size-8 relative '
                         src={isHovered ? Cart : StaticCart} alt='Cart'
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                     />
-                    <span className='flex justify-center items-center bg-white border-1 text-black text-sm md:text-lg size-5 md:size-6 top-[59%] md:top-[57%] right-4 md:right-14 rounded-full absolute'>
+                    <span className='flex justify-center items-center bg-white border-1 text-black text-sm md:text-lg size-5 md:size-6 top-[59%] md:top-[57%] right-4 md:right-16 rounded-full absolute active:scale-95'>
                         {cart.length}
                     </span>
                 </div>
