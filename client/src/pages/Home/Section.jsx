@@ -24,7 +24,7 @@ function Section() {
 
 
     return (
-        <div className="flex flex-col justify-center items-center w-full my-6 md:my-10 px-4 md:px-6 gap-4 md:gap-6">
+        <div className="flex flex-col justify-center items-center w-full my-6 md:my-10 px-4 pt-5 md:px-6 gap-4 md:gap-6">
             <h1 className="text-black text-2xl md:text-4xl">Shop By Category</h1>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5 w-full max-w-7xl">

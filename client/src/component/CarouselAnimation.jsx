@@ -59,7 +59,7 @@ function CarouselAnimation() {
     }, []);
 
     return (
-        <div className="w-full h-[600px] overflow-hidden relative">
+        <div className="hidden md:block w-full h-[600px] overflow-hidden relative">
             <div ref={elementRef} className="flex w-full h-full transition-transform duration-500 ease-in-out">
                 {banners.map((data, index) => (
                     <Link key={index} className="flex-shrink-0 w-full h-full cursor-pointer" to='/products'>
