@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from './CartContext'
 
-import Cart from '../assets/Cart.Gif'
+import Cart from '../assets/Cart.gif'
 import StaticCart from '../assets/StaticCart.png'
 import ProfilePic from '../assets/person.svg'
 
