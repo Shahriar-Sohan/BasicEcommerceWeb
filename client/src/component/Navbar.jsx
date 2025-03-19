@@ -38,10 +38,16 @@ function Navbar() {
 
 
             {/* NavList - hidden on mobile unless menu is open */}
-            <ul className={`absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent py-4 md:py-0 md:text-2xl flex flex-col md:flex-row gap-5 items-center transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible md:opacity-100 md:visible'} md:flex`}>
-                <li className="py-2 md:py-0"><Link to='/' onClick={() => setMobileMenuOpen(false)}>Home</Link></li>
-                <li className="py-2 md:py-0"><Link to='/products' onClick={() => setMobileMenuOpen(false)}>Products</Link></li>
-                <li className="py-2 md:py-0"><Link to='/about' onClick={() => setMobileMenuOpen(false)}>About</Link></li>
+            <ul className={`absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent py-4 md:py-0 md:text-2xl flex flex-col md:flex-row gap-5 items-center justify-center transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible md:opacity-100 md:visible'} md:flex`}>
+                <li className="py-2 md:py-0 border-b-1 border-black w-20 text-center">
+                    <Link to='/' onClick={() => setMobileMenuOpen(false)}>Home</Link>
+                </li>
+                <li className="py-2 md:py-0 border-b-1 border-black w-20 text-center">
+                    <Link to='/products' onClick={() => setMobileMenuOpen(false)}>Products</Link>
+                </li>
+                <li className="py-2 md:py-0 border-b-1 border-black w-20 text-center">
+                    <Link to='/about' onClick={() => setMobileMenuOpen(false)}>About</Link>
+                </li>
             </ul>
 
             {/* Cart and ProfilePic */}
