@@ -29,8 +29,8 @@ function Navbar() {
             </button>
 
             {/* Logo */}
-            <h2 className='text-red-800 pl-2 md:pl-4 text-2xl md:text-4xl group'>
-                <Link to='/' className='relative group-hover:scale-100 active:scale-95 transition-transform duration-200'>
+            <h2 className='text-red-800 pl-2 md:pl-4 text-4xl md:text-4xl group'>
+                <Link to='/' className='relative  group-hover:scale-100 active:scale-95 transition-transform duration-200'>
                     RivalRay
                 </Link>
             </h2>
