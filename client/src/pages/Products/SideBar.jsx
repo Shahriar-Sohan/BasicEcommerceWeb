@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ProductContext } from "@/component/ProductContext";
 
 function SideBar() {

@@ -1,5 +1,5 @@
 import Navbar from "@/component/Navbar"
-import SideBar from "./sideBar"
+import SideBar from "./SideBar"
 import AllProducts from "./AllProducts"
 import Cart from '../../component/Cart'
 
