@@ -10,7 +10,7 @@ function Story() {
                     </div>
                 </div>
                 <div>
-                    <h2 className="text-3xl font-serif font-light text-gray-900 mb-6">Our Story</h2>
+                    <h2 className="text-3xl font-light text-gray-900 mb-6">Our Story</h2>
                     <p className="text-gray-600 mb-6 leading-relaxed">
                         Founded in 2022, RivalRay emerged from a passion for authentic expression through fashion. What began as a small collection of handcrafted pieces in a humble garage has blossomed into a brand that celebrates individuality.
                     </p>

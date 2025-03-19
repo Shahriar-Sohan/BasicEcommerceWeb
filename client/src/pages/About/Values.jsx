@@ -4,7 +4,7 @@
 function Values() {
     return (
         <section className="max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-serif font-light text-center text-gray-900 mb-16">Our Values</h2>
+            <h2 className="text-3xl font-light text-center text-gray-900 mb-16">Our Values</h2>
             <div className="grid md:grid-cols-3 gap-8">
                 <div className="bg-white p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
                     <h3 className="text-xl font-medium mb-4 text-gray-900">Quality Over Quantity</h3>

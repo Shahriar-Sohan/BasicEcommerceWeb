@@ -15,11 +15,11 @@ function Cart() {
     return (
         <div
             id="cart-overlay"
-            className="fixed inset-0 z-10 bg-black/30 flex justify-end"
+            className="fixed inset-0 z-30 bg-black/30 flex justify-end"
             onClick={handleOutsideClick} 
         >
             <div
-                className="z-20 h-full w-80 bg-stone-100 text-black p-8 shadow-lg rounded-l-3xl fixed right-0 flex justify-start items-center flex-col"
+                className=" h-full w-80 bg-stone-100 text-black p-8 shadow-lg rounded-l-3xl fixed right-0 flex justify-start items-center flex-col"
                 onClick={(e) => e.stopPropagation()} 
             >
                 <button

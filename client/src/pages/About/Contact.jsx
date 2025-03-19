@@ -7,7 +7,7 @@ function Contact() {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h2 className="text-3xl font-serif font-light mb-6">Connect With Us</h2>
+                        <h2 className="text-3xl font-light mb-6">Connect With Us</h2>
                         <p className="text-gray-300 mb-8 leading-relaxed">
                             We'd love to hear from you. Whether you have questions, feedback, or just want to say hello, our team is here for you.
                         </p>
