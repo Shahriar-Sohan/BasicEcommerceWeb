@@ -7,11 +7,11 @@ function AllProducts() {
     const { addToCart } = useContext(CartContext);
 
     return (
-        <div className="ml-[16.67%] pt-22 pb-16 px-6 bg-gray-50">
-            <h2 className="text-3xl font-serif font-light text-gray-900 mb-6">
+        <div className="w-full md:ml-[2.67%] pt-2 md:pt-12 pb-16 px-4 md:px-6 bg-gray-50">
+            <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-900 mb-4 md:mb-6">
                 Curated Collection
             </h2>
-            <div className="w-16 h-px bg-gray-400 mb-10"></div>
+            <div className="w-12 md:w-16 h-px bg-gray-400 mb-6 md:mb-10"></div>
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map(product => (
