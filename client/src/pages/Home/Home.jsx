@@ -10,10 +10,8 @@ import { useContext } from 'react'
 function Home() {
     const {cartOpen} = useContext(CartContext)
 
-
-
     return (
-        <div className='flex flex-col justify-start items-start w-full h-full' >
+        <div className='flex flex-col justify-start items-center w-full h-full overflow-x-hidden' >
             {cartOpen && <Cart />}
             <Navbar />
             <Hero />

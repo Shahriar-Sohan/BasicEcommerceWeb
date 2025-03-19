@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import banner1 from "../assets/banner-1.webp";
 import banner2 from "../assets/banner-2.webp";
 import banner3 from "../assets/banner-3.webp";
@@ -44,22 +44,41 @@ function CarouselAnimation() {
 
         intervalRef.current = setInterval(animate, 3500);
 
-        return () => clearInterval(intervalRef.current);
+        const handleResize = () => {
+            if (countRef.current > 0) {
+                element.style.transform = `translateX(-${element.offsetWidth * countRef.current}px)`;
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            clearInterval(intervalRef.current);
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     return (
-        <div className="w-full h-[600px] overflow-hidden">
-            <div ref={elementRef} className="flex w-full h-full">
+        <div className="w-full h-[600px] overflow-hidden relative">
+            <div ref={elementRef} className="flex w-full h-full transition-transform duration-500 ease-in-out">
                 {banners.map((data, index) => (
-                    <Link className="flex-shrink-0 w-full h-full object-cover cursor-pointer" to='/products' >
+                    <Link key={index} className="flex-shrink-0 w-full h-full cursor-pointer" to='/products'>
                         <img
-                            key={index}
                             src={data}
-                            alt={`Banner ${index}`}
-                            className="flex-shrink-0 w-full h-full object-cover cursor-pointer"
+                            alt={`Banner ${index + 1}`}
+                            className="w-full h-full object-cover"
                         />
                     </Link>
+                ))}
+            </div>
 
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                {banners.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-2 h-2 rounded-full ${index === countRef.current % banners.length ? "bg-white" : "bg-white/50"}`}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
                 ))}
             </div>
         </div>

@@ -6,7 +6,7 @@ import CarouselAnimation from '@/component/CarouselAnimation'
 
 function Hero(){
     return(
-        <div className="w-full h-1/4  mt-15">
+        <div className="w-full h-auto mt-4 md:mt-6 lg:mt-15">
             <CarouselAnimation/>
         </div>
     )
