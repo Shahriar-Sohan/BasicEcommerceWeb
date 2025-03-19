@@ -19,7 +19,6 @@ a:active, a:focus {
 
 
 body,html {
-  overscroll-behavior: none;
   margin: 0;
   max-width: 100%;
   width: 100%;
