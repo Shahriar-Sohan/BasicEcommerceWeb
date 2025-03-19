@@ -16,7 +16,7 @@ function Navbar() {
     }
 
     return (
-        <nav className='flex flex-row justify-between items-center w-full p-3 bg-white fixed z-10'>
+        <nav className='flex flex-row justify-between items-center w-full p-3 bg-white fixed z-20'>
             {/* Mobile menu button */}
             <button
                 className='md:hidden flex flex-col justify-center items-center gap-1 pl-1.5'
