@@ -11,8 +11,8 @@ function SideBar() {
         setCheckedItems(prevState=>(
             { ...prevState, [id]: checked }
         ))
-        console.log(`Checkbox with id "${id}" is now ${checked ? "checked" : "unchecked"}`);
-        console.log(checkedItems)
+        // console.log(`Checkbox with id "${id}" is now ${checked ? "checked" : "unchecked"}`);
+        // console.log(checkedItems)
     }
 
 

@@ -18,13 +18,13 @@ function Navbar() {
         <nav className='flex flex-row justify-between items-center w-full p-3 bg-white fixed z-10' >
 
             {/* Icons and searchBar */}
-            <div className='flex flex-row gap-10' >
+            <div className='flex flex-row gap-10 pl-3' >
                 <h2 className='text-black text-4xl' ><Link to='/' >RivalRay</Link></h2>
-                <input className='text-black bg-stone-200 px-5 rounded-4xl w-[25vw]' type='text' placeholder='Search...' />
+                {/* <input className='text-black bg-stone-200 px-5 rounded-4xl w-[25vw]' type='text' placeholder='Searchbar is on development...' /> */}
             </div>
 
             {/* NavList */}
-            <ul className='flex flex-row gap-5 mr-50  '>
+            <ul className='flex flex-row gap-5 '>
                 <li><Link to='/' >Home</Link></li>
                 <li><Link to='/products' >Products</Link></li>
                 <li><Link to='/about' >About</Link></li>
