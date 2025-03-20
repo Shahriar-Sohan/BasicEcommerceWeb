@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { CartContext } from './CartContext'
-
 import Cart from '../assets/Cart.gif'
 import StaticCart from '../assets/StaticCart.png'
 import ProfilePic from '../assets/person.svg'
+
+import { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { CartContext } from './CartContext'
 
 function Navbar() {
     const [isHovered, setIsHovered] = useState(false)
@@ -39,13 +39,13 @@ function Navbar() {
 
             {/* NavList - hidden on mobile unless menu is open */}
             <ul className={`absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent py-4 md:py-0 md:text-2xl flex flex-col md:flex-row gap-5 items-center justify-center transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible md:opacity-100 md:visible'} md:flex`}>
-                <li className="py-2 md:py-0 border-b-1 border-black w-20 text-center">
+                <li className="py-2 md:py-0 border-b-1 md:border-0 border-black w-20 text-center">
                     <Link to='/' onClick={() => setMobileMenuOpen(false)}>Home</Link>
                 </li>
-                <li className="py-2 md:py-0 border-b-1 border-black w-20 text-center">
+                <li className="py-2 md:py-0 border-b-1 md:border-0 border-black w-20 text-center">
                     <Link to='/products' onClick={() => setMobileMenuOpen(false)}>Products</Link>
                 </li>
-                <li className="py-2 md:py-0 border-b-1 border-black w-20 text-center">
+                <li className="py-2 md:py-0 border-b-1 md:border-0 border-black w-20 text-center">
                     <Link to='/about' onClick={() => setMobileMenuOpen(false)}>About</Link>
                 </li>
             </ul>

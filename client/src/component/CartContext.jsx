@@ -23,7 +23,7 @@ export function CartProvider({children}){
 
     
     
-    function addToCart(productId, price){
+    function addToCart(productId){
         setCart(prevCart=>([...prevCart,productId]))
     }
 

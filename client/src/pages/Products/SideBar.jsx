@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { ProductContext } from "@/component/ProductContext";
+import { OverlayContext } from "@/component/OverlayContext";
 
-function SideBar({ isOpen, onClose }) {
+function SideBar() {
     const { brands, categories, setCheckedItems, checkedItems } = useContext(ProductContext)
+    const {filterSidebar, setFilterSidebar} = useContext(OverlayContext)
     
     function categoryCheckbox(event){
         const { id, checked } = event.target
@@ -15,19 +17,19 @@ function SideBar({ isOpen, onClose }) {
     const Overlay = () => (
         <div 
             className="md:hidden fixed top-16 left-0 right-0 bottom-0 bg-black/20 bg-opacity-20 z-30"
-            onClick={onClose}
+        onClick={() => setFilterSidebar(false)}
         ></div>
     );
 
     return (
         <>
-            {isOpen && <Overlay />}
+            {filterSidebar && <Overlay />}
             
             <div className={`
-                fixed top-14 md:top-auto md:relative z-40 md:z-5 bg-white
+                fixed top-14 md:fixed md:top-16 md:left-0 z-40 md:z-5 bg-white
                 h-[calc(100vh-3rem)] md:h-screen w-2/4 md:w-1/6 md:max-w-xs
                 transition-transform duration-300 ease-in-out
-                ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+                ${filterSidebar ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
                 p-6 md:p-10 overflow-y-auto
                 shadow-lg md:shadow-none
                 flex flex-col gap-6`}
@@ -38,7 +40,7 @@ function SideBar({ isOpen, onClose }) {
                     </h1>
                     <button 
                         className="md:hidden text-gray-500 active:scale-80"
-                        onClick={onClose}
+                        onClick={() => setFilterSidebar(false)}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

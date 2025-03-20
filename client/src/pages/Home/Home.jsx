@@ -3,15 +3,20 @@ import Hero from './Hero'
 import Section from './Section'
 import Feature from './FeatureProduct'
 import Cart from '../../component/Cart'
+import ProductOverlay from '@/component/ProductOverlay'
 
 import { CartContext } from '@/component/CartContext'
 import { useContext } from 'react'
+import { OverlayContext } from '@/component/OverlayContext'
+
 
 function Home() {
     const {cartOpen} = useContext(CartContext)
+    const { isOverlayVisible } = useContext(OverlayContext)
 
     return (
         <div className='flex flex-col justify-start items-center w-full h-full overflow-x-hidden' >
+            {isOverlayVisible && <ProductOverlay />}
             {cartOpen && <Cart />}
             <Navbar />
             <Hero />

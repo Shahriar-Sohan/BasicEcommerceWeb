@@ -1,19 +1,22 @@
 import { CartContext } from '@/component/CartContext';
+import { OverlayContext } from '@/component/OverlayContext';
 import { ProductContext } from '@/component/ProductContext';
 import { useContext } from 'react';
 
 function AllProducts() {
     const { products } = useContext(ProductContext);
     const { addToCart } = useContext(CartContext);
+    const { setProduct, setIsOverlayVisible } = useContext(OverlayContext);
+    
 
     return (
-        <div className="w-full md:ml-[2.67%] pt-2 md:pt-12 pb-16 px-4 md:px-6 bg-gray-50">
+        <div className="w-full md:ml-[18.67%] pt-6 md:pt-8 pb-16 px-4 md:px-6 bg-gray-50">
             <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-4 md:mb-6">
                 Curated Collection
             </h2>
             <div className="w-12 md:w-16 h-px bg-gray-400 mb-6 md:mb-10"></div>
 
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map(product => (
                     <div
                         key={product.id}
@@ -31,7 +34,12 @@ function AllProducts() {
                         </div>
 
                         <div className="p-6 bg-white">
-                            <h3 className="text-lg font-medium text-gray-900 mb-2 line-clamp-2 h-8">
+                            <h3 className="text-lg font-medium text-gray-900 mb-2 line-clamp-2 h-8"
+                            onClick={()=>{
+                                setIsOverlayVisible(true)
+                                setProduct(product)
+                            }}
+                            >
                                 {product.title}
                             </h3>
 

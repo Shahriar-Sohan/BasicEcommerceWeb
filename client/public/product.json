@@ -6,7 +6,16 @@
         "category": "Clothing",
         "gender": "Unisex",
         "brand": "Sean John",
-        "image": "/images/Diddy.jpg"
+        "image": "/images/Diddy.jpg",
+        "description": "A stylish and comfortable t-shirt from Sean John.",
+        "rating": 4.3,
+        "discount": 10,
+        "isNew": true,
+        "availableSizes": ["S", "M", "L", "XL"],
+        "availableColors": [
+            { "name": "White", "hex": "#FFFFFF" },
+            { "name": "Black", "hex": "#000000" }
+        ]
     },
     {
         "id": 2,
@@ -15,16 +24,35 @@
         "category": "Clothing",
         "gender": "Men",
         "brand": "OVO",
-        "image": "/images/drake.webp"
+        "image": "/images/drake.webp",
+        "description": "A cozy hoodie perfect for any occasion.",
+        "rating": 4.6,
+        "discount": 5,
+        "isNew": false,
+        "availableSizes": ["M", "L", "XL"],
+        "availableColors": [
+            { "name": "Black", "hex": "#000000" },
+            { "name": "Grey", "hex": "#808080" }
+        ]
     },
     {
         "id": 3,
         "title": "Kendrick Lamar Vinyl",
         "price": 29.99,
-        "category": "Clothing",
+        "category": "Music",
         "gender": "Unisex",
         "brand": "Top Dawg",
-        "image": "/images/kendrickLamar.jpg"
+        "image": "/images/kendrickLamar.jpg",
+        "description": "A must-have vinyl for any Kendrick Lamar fan.",
+        "rating": 4.5,
+        "discount": 0,
+        "isNew": true,
+        "availableSizes": ["12-inch", "7-inch", "10-inch"],
+        "availableColors": [
+            { "name": "Black", "hex": "#000000" },
+            { "name": "Red", "hex": "#FF0000" },
+            { "name": "Blue", "hex": "#0000FF" }
+        ]
     },
     {
         "id": 4,
@@ -33,42 +61,123 @@
         "category": "Women",
         "gender": "Women",
         "brand": "Rick & Morty",
-        "image": "/images/randm.webp"
+        "image": "/images/randm.webp",
+        "description": "Trendy sneakers that combine comfort and style.",
+        "rating": 4.2,
+        "discount": 20,
+        "isNew": false,
+        "availableSizes": ["6", "7", "8", "9"],
+        "availableColors": [
+            { "name": "Pink", "hex": "#FFC0CB" },
+            { "name": "Green", "hex": "#008000" }
+        ]
     },
     {
         "id": 5,
         "title": "Running Shoes",
         "price": 119.99,
-        "gender" : "Unisex",
-        "brand" : "Nike",
+        "gender": "Unisex",
+        "brand": "Nike",
         "category": "Footwear",
-        "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/ca929f7e-f433-46b7-8d83-1a6171c172ce/NIKE+REVOLUTION+7+EASYON.png"
+        "image": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/ca929f7e-f433-46b7-8d83-1a6171c172ce/NIKE+REVOLUTION+7+EASYON.png",
+        "description": "Lightweight and durable running shoes from Nike.",
+        "rating": 4.8,
+        "discount": 15,
+        "isNew": false,
+        "availableSizes": ["7", "8", "9", "10", "11"],
+        "availableColors": [
+            { "name": "Blue", "hex": "#0000FF" },
+            { "name": "Red", "hex": "#FF0000" }
+        ]
     },
     {
         "id": 6,
         "title": "Top G Hoodie",
         "price": 89.99,
-        "gender" : "Men",
-        "brand" : "Top G",
+        "gender": "Men",
+        "brand": "Top G",
         "category": "Clothing",
-        "image": "https://www.leatherjacketblack.com/wp-content/uploads/2024/10/Top-G-Andrew-Tate-Black-Pullover-Hoodie.webp"
+        "image": "https://www.leatherjacketblack.com/wp-content/uploads/2024/10/Top-G-Andrew-Tate-Black-Pullover-Hoodie.webp",
+        "description": "A stylish hoodie for the modern man.",
+        "rating": 4.1,
+        "discount": 25,
+        "isNew": true,
+        "availableSizes": ["M", "L", "XL"],
+        "availableColors": [
+            { "name": "Black", "hex": "#000000" },
+            { "name": "Navy", "hex": "#000080" }
+        ]
     },
     {
         "id": 7,
         "title": "Rolex Watch",
         "price": 39.99,
         "category": "Accessories",
-        "gender" : "Men",
-        "brand" : "Top G",
-        "image": "https://www.sandiegouniontribune.com/wp-content/uploads/migration/2023/12/22/0000018c-923c-df38-a19c-db7f4f740001.jpg?w=1800&resize=1800,1800"
+        "gender": "Men",
+        "brand": "Top G",
+        "image": "https://www.sandiegouniontribune.com/wp-content/uploads/migration/2023/12/22/0000018c-923c-df38-a19c-db7f4f740001.jpg?w=1800&resize=1800,1800",
+        "description": "A classic watch that never goes out of style.",
+        "rating": 4.7,
+        "discount": 5,
+        "isNew": false,
+        "availableSizes": [],
+        "availableColors": [
+            { "name": "Gold", "hex": "#FFD700" },
+            { "name": "Silver", "hex": "#C0C0C0" },
+            { "name": "Black", "hex": "#000000" }
+        ]
     },
     {
         "id": 8,
         "title": "Kid's T-Shirt",
         "price": 79.99,
         "category": "Kids",
-        "gender" : "Unisex",
-        "brand" : "BimBam",
-        "image": "https://assets.medpagetoday.net/media/images/103xxx/103925.jpg?width=0.8"
+        "gender": "Unisex",
+        "brand": "BimBam",
+        "image": "https://assets.medpagetoday.net/media/images/103xxx/103925.jpg?width=0.8",
+        "description": "A fun t-shirt for kids to express their style.",
+        "rating": 4.0,
+        "discount": 12,
+        "isNew": true,
+        "availableSizes": ["S", "M", "L"],
+        "availableColors": [
+            { "name": "Yellow", "hex": "#FFFF00" },
+            { "name": "Pink", "hex": "#FFC0CB" }
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Leather Chelsea Boots",
+        "description": "Premium handcrafted leather boots with elastic side panels and pull tab. Perfect for casual and formal occasions.",
+        "price": 189.99,
+        "rating": 4.7,
+        "gender": "Unisex",
+        "brand": "Puma",
+        "image": "https://www.activeathlete88.com/cdn/shop/products/blob-2022-12-21T124205.671.jpg?v=1671648156&width=720",
+        "discount": 0,
+        "isNew": true,
+        "category": "Footwear",
+        "availableSizes": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+        ],
+        "availableColors": [
+            {
+                "name": "Black",
+                "hex": "#000000"
+            },
+            {
+                "name": "Brown",
+                "hex": "#964B00"
+            },
+            {
+                "name": "Tan",
+                "hex": "#D2B48C"
+            }
+        ]
     }
 ]
