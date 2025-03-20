@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import { Star, ShoppingBag, Heart } from "lucide-react"
 import { OverlayContext } from "./OverlayContext"
 import { CartContext } from "./CartContext"
 
@@ -50,10 +49,12 @@ function ProductOverlay() {
                     {/* Rating */}
                     <div className="flex items-center gap-1 mb-3">
                         {[...Array(5)].map((_, i) => (
-                            <Star
+                            <div
                                 key={i}
-                                className={`w-3.5 h-3.5 md:w-4 md:h-4 ${i < Math.floor(product.rating) ? "fill-yellow-500 text-yellow-500" : "text-gray-300"}`}
-                            />
+                                className={`w-3.5 h-3.5 md:w-4 md:h-4 ${i < Math.floor(product.rating) ? "text-yellow-500" : "text-gray-300"}`}
+                            >
+                                &#9733;
+                            </div>
                         ))}
                         <span className="text-xs md:text-sm ml-1 text-gray-600">{product.rating.toFixed(1)} (120 reviews)</span>
                     </div>
@@ -119,11 +120,17 @@ function ProductOverlay() {
                             setIsOverlayVisible(false)
                         }}
                         >
-                            <ShoppingBag className="mr-1.5 md:mr-2 h-4 w-4 md:h-5 md:w-5" />
+                            <svg className="mr-1.5 md:mr-2 h-4 w-4 md:h-5 md:w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M6 2L6 6H18L18 2" />
+                                <path d="M3 6L5 21C5 21.55 5.45 22 6 22H18C18.55 22 19 21.55 19 21L21 6" />
+                                <path d="M10 12H14" />
+                            </svg>
                             Add to Cart
                         </button>
                         <button className="p-2.5 md:p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-                            <Heart className="h-4 w-4 md:h-5 md:w-5" />
+                            <svg className="h-4 w-4 md:h-5 md:w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 21C12 21 7 16.5 5 14C3 12 3 9 5 7C6.69 5.31 9.28 5.31 12 7C14.72 5.31 17.31 5.31 19 7C21 9 21 12 19 14C17 16.5 12 21 12 21Z" />
+                            </svg>
                         </button>
                     </div>
                 </div>
