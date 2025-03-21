@@ -4,7 +4,7 @@ import AllProducts from "./AllProducts"
 import Cart from '../../component/Cart'
 import ProductOverlay from "@/component/ProductOverlay"
 
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { CartContext } from "@/component/CartContext"
 import { OverlayContext } from "@/component/OverlayContext"
 import FilterBtnMobile from "@/component/FilterBtnMobile"
@@ -12,7 +12,11 @@ import Footer from "@/component/Footer"
 
 function Products() {
     const { cartOpen } = useContext(CartContext)
-    const { isOverlayVisible, filterSidebar } = useContext(OverlayContext)
+    const { isOverlayVisible } = useContext(OverlayContext)
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">

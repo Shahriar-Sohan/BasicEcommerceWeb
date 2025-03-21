@@ -14,7 +14,7 @@ function Feature() {
         {featuredProducts.map((card) => (
           <div
             key={card.id}
-            className="cursor-pointer p-2 md:p-4 rounded-lg bg-gray-100 shadow-2xl w-full max-w-xs mx-auto active:scale-95 hover:scale-105 hover:ring-2 hover:shadow-2xl transition-shadow duration-50"
+            className=" animate-fade-left cursor-pointer p-2 md:p-4 rounded-lg bg-gray-100 shadow-2xl w-full max-w-xs mx-auto active:scale-95 hover:scale-105 hover:ring-2 hover:shadow-2xl transition-shadow duration-50"
             onClick={() => {
               setIsOverlayVisible(true)
               setProduct(card)
