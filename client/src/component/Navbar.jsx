@@ -35,7 +35,7 @@ function Navbar() {
       </button>
 
       {/* Logo */}
-      <h2 className="text-red-800 pl-8 md:pl-4 text-4xl md:text-4xl group active:scale-95 md:active:scale-100">
+      <h2 className="text-red-800 pl-9 md:pl-4 text-4xl md:text-4xl group active:scale-95 md:active:scale-100">
         <Link to="/" className="relative hover:text-blue-500 group-hover:scale-100 active:scale-95 transition-transform duration-200">
           RivalRay
         </Link>
