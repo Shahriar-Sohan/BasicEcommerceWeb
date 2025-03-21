@@ -17,7 +17,7 @@ function SideBar() {
     const Overlay = () => (
         <div 
             className="md:hidden fixed top-16 left-0 right-0 bottom-0 bg-black/20 bg-opacity-20 z-30"
-        onClick={() => setFilterSidebar(false)}
+            onClick={() => setFilterSidebar(false)}
         ></div>
     );
 
@@ -26,8 +26,8 @@ function SideBar() {
             {filterSidebar && <Overlay />}
             
             <div className={`
-                fixed top-14 md:fixed md:top-16 md:left-0 z-40 md:z-5 bg-white
-                h-[calc(100vh-3rem)] md:h-screen w-2/4 md:w-1/6 md:max-w-xs
+                fixed top-14 md:absolute md:top-16 md:left-0 z-40 md:z-5 bg-white
+                h-full max-h-[calc(100vh-3rem)] md:max-h-[calc(100vh-4rem)] w-2/4 md:w-1/6 md:max-w-xs
                 transition-transform duration-300 ease-in-out
                 ${filterSidebar ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
                 p-6 md:p-10 overflow-y-auto

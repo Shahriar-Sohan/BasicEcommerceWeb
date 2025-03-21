@@ -63,7 +63,10 @@ function Navbar() {
 
         {/* Mobile-only buttons */}
         <li className="py-2 md:hidden w-full flex flex-col gap-3 mt-2">
-          <button className="text-sm font-medium hover:text-red-800 hover:scale-105 transition-all">Login</button>
+          <Link to="/login" className="flex items-center justify-center" >
+            <button className="text-sm font-medium hover:text-red-800 hover:scale-105 transition-all" >Login</button>
+          </Link>
+
           <button className="bg-red-800 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-900 active:scale-95 transition-all mx-auto w-32">
             Get Started
           </button>
@@ -74,9 +77,9 @@ function Navbar() {
       <div className="flex flex-row gap-6 mr-2 items-center">
         {/* Login button - hidden on mobile */}
         <Link to="/login">
-        <button className="hidden md:block text-lg font-medium hover:text-red-800 hover:scale-110 transition-all duration-50">Login</button>
+          <button className="hidden md:block text-lg font-medium hover:text-red-800 hover:scale-110 transition-all duration-50">Login</button>
         </Link>
-        
+
 
         {/* Get Started button - hidden on mobile */}
         <button className="hidden md:block bg-red-800 text-white px-4 py-1.5 rounded-md text-sm font-medium hover:bg-red-900 active:scale-95 md:hover:scale-105 transition-all duration-50">

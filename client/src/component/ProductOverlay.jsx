@@ -26,7 +26,7 @@ function ProductOverlay() {
                         </div>
                     )}
                     {product.discount > 0 && (
-                        <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1.5 rounded-md text-sm font-medium">
+                        <div className="absolute top-4 right-14 bg-red-600 text-white px-3 py-1.5 rounded-md text-sm font-medium">
                             {product.discount}% OFF
                         </div>
                     )}
@@ -56,7 +56,7 @@ function ProductOverlay() {
                                 &#9733;
                             </div>
                         ))}
-                        <span className="text-xs md:text-sm ml-1 text-gray-600">{product.rating.toFixed(1)} (120 reviews)</span>
+                        <span className="text-xs md:text-sm ml-1 mt-2 text-gray-600">{product.rating.toFixed(1)} (120 reviews)</span>
                     </div>
 
                     {/* Price */}

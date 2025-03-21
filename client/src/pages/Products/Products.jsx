@@ -4,27 +4,29 @@ import AllProducts from "./AllProducts"
 import Cart from '../../component/Cart'
 import ProductOverlay from "@/component/ProductOverlay"
 
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { CartContext } from "@/component/CartContext"
 import { OverlayContext } from "@/component/OverlayContext"
 import FilterBtnMobile from "@/component/FilterBtnMobile"
+import Footer from "@/component/Footer"
 
 function Products() {
     const { cartOpen } = useContext(CartContext)
-    const { isOverlayVisible } = useContext(OverlayContext)
-
+    const { isOverlayVisible, filterSidebar } = useContext(OverlayContext)
 
     return (
-        <div className="min-h-screen bg-gray-50">
-
+        <div className="min-h-screen bg-gray-50 flex flex-col">
             {isOverlayVisible && <ProductOverlay />}
             <Navbar />
             <FilterBtnMobile/>
-            <div className="flex flex-col md:flex-row pt-16">
+            
+            <div className="flex flex-col md:flex-row pt-16 flex-grow">
                 {cartOpen && <Cart />}
                 <SideBar/>
                 <AllProducts />
             </div>
+            
+            <Footer />
         </div>
     )
 }
