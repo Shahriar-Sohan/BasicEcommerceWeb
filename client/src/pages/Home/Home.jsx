@@ -20,6 +20,7 @@ function Home() {
     const {cartOpen} = useContext(CartContext)
     const { isOverlayVisible } = useContext(OverlayContext)
 
+
     return (
         <div className='flex flex-col justify-start items-center w-full h-full overflow-x-hidden' >
             {isOverlayVisible && <ProductOverlay />}
