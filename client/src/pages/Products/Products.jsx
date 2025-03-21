@@ -11,7 +11,7 @@ import FilterBtnMobile from "@/component/FilterBtnMobile"
 import Footer from "@/component/Footer"
 
 function Products() {
-    const { cartOpen,  } = useContext(CartContext)
+    const { cartOpen, checkedItems  } = useContext(CartContext)
     const { isOverlayVisible } = useContext(OverlayContext)
 
     useEffect(() => {
