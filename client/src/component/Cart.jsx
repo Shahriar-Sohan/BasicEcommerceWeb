@@ -5,7 +5,7 @@ import Quantity from "./Quantity"
 function Cart() {
     const { setCartOpen, cart, addToCart, removeFromCart, cartProducts, totalPrice } = useContext(CartContext)
 
-    
+
     const handleOutsideClick = (e) => {
         if (e.target.id === "cart-overlay") {
             setCartOpen(false);
@@ -16,19 +16,22 @@ function Cart() {
         <div
             id="cart-overlay"
             className="fixed inset-0 z-30 bg-black/30 flex justify-end"
-            onClick={handleOutsideClick} 
+            onClick={handleOutsideClick}
         >
             <div
-                className=" h-full w-80 bg-stone-100 text-black p-8 shadow-lg rounded-l-3xl fixed right-0 flex justify-start items-center flex-col"
-                onClick={(e) => e.stopPropagation()} 
+                className="pt-20 h-full w-80 bg-stone-100 text-black p-8 shadow-lg rounded-l-3xl fixed right-0 flex justify-start items-center flex-col overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
             >
-                <button
-                    className="absolute flex justify-center items-center size-10 top-4 right-4 text-2xl text-gray-600 active:scale-80 hover:text-gray-800"
-                    onClick={() => setCartOpen(false)}
-                >
-                    x
-                </button>
-                <h2 className="text-2xl font-bold mb-8 uppercase">Shopping Cart</h2>
+                <div className="fixed flex flex-col items-end justify-center w-80 top-0 h-20 pt-10 bg-stone-100" >
+                    <button
+                        className="pr-8 pt-6 flex justify-end items-center size-10 text-2xl text-gray-600 active:scale-90 hover:text-gray-800"
+                        onClick={() => setCartOpen(false)}
+                    >
+                        x
+                    </button>
+                    <h2 className=" pr-18 pb-4 text-2xl font-bold mb-8 uppercase">Shopping Cart</h2>
+                </div>
+
 
                 {cartProducts.map(product => {
                     const quantity = Quantity(cart, product.id);
@@ -63,10 +66,11 @@ function Cart() {
                     );
                 })}
 
-                <span className="ml-[50%] font-bold">Total: {totalPrice.toFixed(2)}$</span>
 
-                <div className="cart-footer mt-8 text-center">
-                    <button className="checkout-button py-3 px-6 text-xl bg-gray-800 text-white border border-gray-700 rounded-full active:scale-95 hover:bg-gray-500 transition-all duration-300 transform hover:scale-105 disabled:bg-gray-600 disabled:text-gray-400 disabled:border-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:pointer-events-none"
+
+                <div className="fixed mt-8 flex flex-col justify-center items-center bg-stone-100 h-30 w-80 bottom-0">
+                    <span className="pl-39 py-3 border-t-1  w-65 font-bold">Total: {totalPrice.toFixed(2)}$</span>
+                    <button className="mb-4 py-3 px-6 text-xl bg-gray-800 text-white border border-gray-700 rounded-full active:scale-95 hover:bg-gray-500 transition-all duration-300 transform hover:scale-105 disabled:bg-gray-600 disabled:text-gray-400 disabled:border-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:pointer-events-none"
                         disabled={cart.length ? false : true}>
                         Checkout
                     </button>

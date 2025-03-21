@@ -3,7 +3,7 @@
         "id": 1,
         "title": "Diddy T-Shirt",
         "price": 49.99,
-        "category": "Clothing",
+        "category": "Men",
         "gender": "Unisex",
         "brand": "Sean John",
         "image": "/images/Diddy.jpg",
@@ -21,7 +21,7 @@
         "id": 2,
         "title": "Drake Hoodie",
         "price": 79.99,
-        "category": "Clothing",
+        "category": "Men",
         "gender": "Men",
         "brand": "OVO",
         "image": "/images/drake.webp",
@@ -96,7 +96,7 @@
         "price": 89.99,
         "gender": "Men",
         "brand": "Top G",
-        "category": "Clothing",
+        "category": "Men",
         "image": "https://www.leatherjacketblack.com/wp-content/uploads/2024/10/Top-G-Andrew-Tate-Black-Pullover-Hoodie.webp",
         "description": "A stylish hoodie for the modern man.",
         "rating": 4.1,
@@ -133,7 +133,7 @@
         "price": 79.99,
         "category": "Kids",
         "gender": "Unisex",
-        "brand": "BimBam",
+        "brand": "Nike",
         "image": "https://assets.medpagetoday.net/media/images/103xxx/103925.jpg?width=0.8",
         "description": "A fun t-shirt for kids to express their style.",
         "rating": 4.0,
@@ -152,7 +152,7 @@
         "price": 189.99,
         "rating": 4.7,
         "gender": "Unisex",
-        "brand": "Puma",
+        "brand": "Nike",
         "image": "https://www.activeathlete88.com/cdn/shop/products/blob-2022-12-21T124205.671.jpg?v=1671648156&width=720",
         "discount": 0,
         "isNew": true,
@@ -178,6 +178,78 @@
                 "name": "Tan",
                 "hex": "#D2B48C"
             }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Classic Denim Jacket",
+        "price": 59.99,
+        "category": "Men",
+        "gender": "Unisex",
+        "brand": "Nike",
+        "image": "https://assets-varnish.triblive.com/2024/11/7966056_web1_7966056-55b9c884f7eb4ca6a0578fbfcc15334e.jpg",
+        "description": "A timeless denim jacket perfect for layering.",
+        "rating": 4.4,
+        "discount": 15,
+        "isNew": false,
+        "availableSizes": ["S", "M", "L", "XL"],
+        "availableColors": [
+            { "name": "Blue", "hex": "#0000FF" },
+            { "name": "Black", "hex": "#000000" }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Leather Wallet",
+        "price": 49.99,
+        "category": "Accessories",
+        "gender": "Unisex",
+        "brand": "Top G",
+        "image": "https://au.maxwellscottbags.com/media/wysiwyg/HomePage/2024/jan/travel-gifts.jpg",
+        "description": "Premium leather wallet with multiple compartments.",
+        "rating": 4.5,
+        "discount": 20,
+        "isNew": false,
+        "availableSizes": [],
+        "availableColors": [
+            { "name": "Brown", "hex": "#964B00" },
+            { "name": "Black", "hex": "#000000" }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Casual GigaChad T-Shirt",
+        "price": 39.99,
+        "category": "Men",
+        "gender": "Men",
+        "brand": "GigaChad",
+        "image": "https://i.pinimg.com/736x/2a/cb/f2/2acbf249a34ad6559422eef0ff4f61a8.jpg",
+        "description": "A comfortable and stylish T-Shirt that will make you 'GigaChad' .",
+        "rating": 4.3,
+        "discount": 10,
+        "isNew": true,
+        "availableSizes": ["M", "L", "XL"],
+        "availableColors": [
+            { "name": "Navy", "hex": "#000080" },
+            { "name": "White", "hex": "#FFFFFF" }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Mountain Backpack",
+        "price": 89.99,
+        "category": "Accessories",
+        "gender": "Unisex",
+        "brand": "North Face",
+        "image": "https://assets.thenorthface.eu/images/t_img/f_auto,h_462,w_462,e_sharpen:60/dpr_2.0/v1720715993/NF0A52SH4HF-HERO/Recon-Backpack.png",
+        "description": "Durable and spacious backpack for hiking and travel.",
+        "rating": 4.7,
+        "discount": 5,
+        "isNew": false,
+        "availableSizes": [],
+        "availableColors": [
+            { "name": "Black", "hex": "#000000" },
+            { "name": "Red", "hex": "#FF0000" }
         ]
     }
 ]

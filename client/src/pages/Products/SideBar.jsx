@@ -54,7 +54,7 @@ function SideBar() {
                         {categories.map((category) => (
                             <li key={category} className="flex items-center gap-2 cursor-pointer">
                                 <input
-                                    className="cursor-pointer w-5 h-5 border-2 border-black accent-black"
+                                    className="cursor-pointer w-5 h-5 border-2 border-black accent-red-900"
                                     type="checkbox"
                                     id={category}
                                     onChange={categoryCheckbox}

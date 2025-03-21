@@ -1,23 +1,5 @@
 
 
-
-a:hover {
-  color: #535bf2;
-}
-
-
-a:active {
-  transform: scale(0.95);
-  transition: transform 0.2s ease;
-}
-
-
-a:active, a:focus {
-  transform: scale(0.95);
-  transition: transform 0.2s ease;
-}
-
-
 body,html {
   margin: 0;
   max-width: 100%;
@@ -38,9 +20,7 @@ button {
 
   
 }
-button:hover {
-  border-color: #646cff;
-}
+
 
 
 

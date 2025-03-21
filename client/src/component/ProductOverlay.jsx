@@ -114,7 +114,7 @@ function ProductOverlay() {
 
                     {/* Add to Cart */}
                     <div className="flex gap-2 md:gap-3 mt-auto">
-                        <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 md:py-3 px-4 rounded-lg flex items-center justify-center font-medium text-sm md:text-base"
+                        <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 md:py-3 px-4 rounded-lg flex items-center justify-center font-medium text-sm md:text-base active:scale-90"
                         onClick={()=>{
                             addToCart(product.id)
                             setIsOverlayVisible(false)
