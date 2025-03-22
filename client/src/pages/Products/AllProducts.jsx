@@ -16,7 +16,7 @@ function AllProducts() {
             </h2>
             <div className="w-12 md:w-16 h-px bg-gray-400 mb-6 md:mb-10"></div>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map(product => (
                     <div
                         key={product.id}
@@ -37,13 +37,13 @@ function AllProducts() {
                             </div>
                         </div>
 
-                        <div className="p-6 bg-white" 
+                        <div className="p-4 md:p-6 bg-white" 
                             onClick={()=>{
                                 setIsOverlayVisible(true)
                                 setProduct(product)
                             }}
                         >
-                            <h3 className="text-lg font-medium text-gray-900 mb-2 line-clamp-2 h-8"
+                            <h3 className="text-lg md:text-xl font-medium text-gray-900 mb-2 line-clamp-2 h-8"
                             
                             >
                                 {product.title}
@@ -52,12 +52,12 @@ function AllProducts() {
                             <p className="text-gray-500">{product.gender}</p>
                             <p className="text-gray-700">{product.brand}</p>
 
-                            <div className="flex justify-between items-center mt-4">
-                                <p className="text-lg font-bold text-gray-900">
+                            <div className="flex justify-between items-center gap-2 mt-2">
+                                <p className="text-lg md:text-2xl font-bold text-gray-900">
                                     ${product.price.toFixed(2)}
                                 </p>
                                 <button
-                                    className="bg-transparent border border-gray-800 px-4 py-2 text-sm text-gray-800 transition-colors active:scale-95 duration-300 hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500"
+                                    className="bg-transparent border border-gray-800  py-2 text-xs md:px-3 md:py-2 md:text-sm text-gray-800 transition-colors active:scale-95 duration-300 hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 w-full sm:w-auto"
                                     onClick={(e) => {
                                         e.stopPropagation(); 
                                         addToCart(product.id);
