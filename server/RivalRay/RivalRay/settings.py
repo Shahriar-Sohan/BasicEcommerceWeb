@@ -78,12 +78,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'rivalray_db',
-        'USER': 'root',
-        'PASSWORD': '1943Sohan:)!',
+        'USER': 'rivalray_user',
+        'PASSWORD': '1943Sohan:)',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            'charset': 'utf8mb4',
         }
     }
 }
