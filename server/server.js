@@ -2,11 +2,14 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mysql from 'mysql2'
 
+import testRoute from './Routes/test.js'
+import productRoute from './Routes/products.js'
+
 // Load environment variables
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 // Create a MySQL connection
 const db = mysql.createConnection(
@@ -32,11 +35,17 @@ db.connect((err)=>{
 // Middleware to parse JSON
 app.use(express.json())
 
+app.use('/', testRoute,productRoute);
 
-app.get('/',(req,res)=>{
+app.get('/dev',(req,res)=>{
     res.send('Backend is running!');
 })
 
-app.get('/products')
 
-app.get('/about')
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+
+export default db;
