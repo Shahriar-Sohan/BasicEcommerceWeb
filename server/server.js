@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import mysql from 'mysql2'
+import cors from 'cors'
 
 import testRoute from './Routes/test.js'
 import productRoute from './Routes/products.js'
@@ -10,6 +11,12 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5001;
+
+// CORS Middleware should be the first middleware
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
 
 // Create a MySQL connection
 const db = mysql.createConnection(
@@ -40,6 +47,7 @@ app.use('/', testRoute,productRoute);
 app.get('/dev',(req,res)=>{
     res.send('Backend is running!');
 })
+
 
 
 // Start the server

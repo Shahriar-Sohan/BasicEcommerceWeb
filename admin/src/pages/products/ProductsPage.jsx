@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   Box,
   Button,
@@ -21,71 +21,89 @@ import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { Link } from "react-router-dom"
 
-const products = [
-  {
-    id: 1,
-    title: "Classic Cotton T-Shirt",
-    category: "Tops",
-    gender: "Men",
-    brand: "RivalRay",
-    price: 29.99,
-    discount: 0,
-    stock: 120,
-    featured: true,
-    new: false,
-  },
-  {
-    id: 2,
-    title: "Slim Fit Jeans",
-    category: "Pants",
-    gender: "Men",
-    brand: "DenimCo",
-    price: 59.99,
-    discount: 10,
-    stock: 85,
-    featured: false,
-    new: true,
-  },
-  {
-    id: 3,
-    title: "Summer Floral Dress",
-    category: "Dresses",
-    gender: "Women",
-    brand: "Floralia",
-    price: 49.99,
-    discount: 15,
-    stock: 42,
-    featured: true,
-    new: true,
-  },
-  {
-    id: 4,
-    title: "Athletic Performance Shorts",
-    category: "Shorts",
-    gender: "Unisex",
-    brand: "SportElite",
-    price: 34.99,
-    discount: 0,
-    stock: 67,
-    featured: false,
-    new: false,
-  },
-  {
-    id: 5,
-    title: "Wool Winter Sweater",
-    category: "Tops",
-    gender: "Women",
-    brand: "WinterWarm",
-    price: 79.99,
-    discount: 20,
-    stock: 28,
-    featured: true,
-    new: false,
-  },
-]
+// const products = [
+//   {
+//     id: 1,
+//     title: "Classic Cotton T-Shirt",
+//     category: "Tops",
+//     gender: "Men",
+//     brand: "RivalRay",
+//     price: 29.99,
+//     discount: 0,
+//     stock: 120,
+//     featured: true,
+//     new: false,
+//   },
+//   {
+//     id: 2,
+//     title: "Slim Fit Jeans",
+//     category: "Pants",
+//     gender: "Men",
+//     brand: "DenimCo",
+//     price: 59.99,
+//     discount: 10,
+//     stock: 85,
+//     featured: false,
+//     new: true,
+//   },
+//   {
+//     id: 3,
+//     title: "Summer Floral Dress",
+//     category: "Dresses",
+//     gender: "Women",
+//     brand: "Floralia",
+//     price: 49.99,
+//     discount: 15,
+//     stock: 42,
+//     featured: true,
+//     new: true,
+//   },
+//   {
+//     id: 4,
+//     title: "Athletic Performance Shorts",
+//     category: "Shorts",
+//     gender: "Unisex",
+//     brand: "SportElite",
+//     price: 34.99,
+//     discount: 0,
+//     stock: 67,
+//     featured: false,
+//     new: false,
+//   },
+//   {
+//     id: 5,
+//     title: "Wool Winter Sweater",
+//     category: "Tops",
+//     gender: "Women",
+//     brand: "WinterWarm",
+//     price: 79.99,
+//     discount: 20,
+//     stock: 28,
+//     featured: true,
+//     new: false,
+//   },
+// ]
+
+
 
 function ProductsPage() {
   const [search, setSearch] = useState("")
+  const [products, setProducts] = useState([])
+
+
+  useEffect(()=>{
+    async function fetchProducts(){
+      try {
+        const res = await fetch('http://localhost:5001/products')
+        if(!res.ok) throw new Error("failed to fetch")
+        const data = await res.json()
+      setProducts(data)
+      }catch(error){
+        console.error('fetch error:', error)
+      }
+    }
+    fetchProducts()
+  },[])
 
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(search.toLowerCase())
@@ -148,7 +166,7 @@ function ProductsPage() {
                   {product.discount > 0 ? (
                     <Box display="flex" flexDirection="column" alignItems="flex-end">
                       <Typography variant="body2" sx={{ textDecoration: "line-through", color: "gray" }}>
-                        ${product.price.toFixed(2)}
+                        ${product.price}
                       </Typography>
                       <Typography fontWeight="medium">
                         ${(product.price * (1 - product.discount / 100)).toFixed(2)}
