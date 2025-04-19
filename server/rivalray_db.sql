@@ -72,9 +72,11 @@ CREATE TABLE products (
 CREATE TABLE product_stock (
     stock_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     product_id INT UNSIGNED,
+    variant_id INT UNSIGNED,
     product_quantity INT UNSIGNED DEFAULT 0,
 
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (variant_id) REFERENCES product_variant(variant_id)
 );
 
 -- junction table for tags and products
