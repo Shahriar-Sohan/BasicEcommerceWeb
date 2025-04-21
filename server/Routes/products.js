@@ -37,6 +37,26 @@ router.get('/products',(req,res)=>{
         }
         res.json(results)
     })
-})
+});
+
+router.get('/products/:id',(req,res)=>{
+    const sql = `${productSql} WHERE products.product_id = ?`
+    db.query(sql,[req.params.id],(err,results)=>{
+        if(err){
+            console.error('Error fetching product: ', err);
+            return res.status(500).send('Error fetching product');
+        }
+        if (results.length === 0) {
+            return res.status(404).send('Product not found');
+        }
+        res.json(results[0]);
+    })
+});
+
+// router.post('/products/add',(req,res)=>{
+
+// });
+// router.put();
+// router.delete();
 
 export default router;
