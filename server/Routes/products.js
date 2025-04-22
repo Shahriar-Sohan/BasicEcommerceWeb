@@ -53,10 +53,24 @@ router.get('/products/:id',(req,res)=>{
     })
 });
 
-// router.post('/products/add',(req,res)=>{
-
-// });
-// router.put();
-// router.delete();
+router.post('/products/add',async(req,res)=>{
+	const {title, description, price,  category, brand, gender, size, color, discount, featuredProduct, newArrival}=req.body;
+	const sql = `INSERT INTO products (image_id, category_id, gender_id, brand_id, tag_id ,variant_id, product_title, product_description, product_price, product_discount, is_featured, is_new))
+	VALUES(
+	1,
+	(SELECT category_id FROM product_categories WHERE category_name = ?),
+	(SELECT gender_id FROM product_gender WHERE gender_name = ?),
+	(SELECT brand_id FROM product_brand WHERE brand_name = ?),
+	(SELECT tag_id FROM product_tags WHERE tag_name = ?),
+	(SELECT variant_id FROM product_variants WHERE size = ? AND color = ?),
+	?,
+	?,
+	?,
+	?,
+	?,
+	?)`
+});
+router.put();
+router.delete();
 
 export default router;
