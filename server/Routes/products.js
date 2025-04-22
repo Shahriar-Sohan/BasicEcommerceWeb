@@ -53,7 +53,7 @@ router.get('/products/:id',(req,res)=>{
     })
 });
 
-router.post('/products/add',async(req,res)=>{
+router.post('/products/add',(req,res)=>{
 	const {title, description, price,  category, brand, gender, size, color, discount, featuredProduct, newArrival}=req.body;
 	const sql = `INSERT INTO products (image_id, category_id, gender_id, brand_id, tag_id ,variant_id, product_title, product_description, product_price, product_discount, is_featured, is_new))
 	VALUES(
@@ -68,9 +68,21 @@ router.post('/products/add',async(req,res)=>{
 	?,
 	?,
 	?,
-	?)`
+	?)
+`
+	const value =[title, description, price,  category, brand, gender, size, color, discount, featuredProduct, newArrival]
+	});
+db.query(sql, value, (err, result)=>{
+	if(err){
+	console.error("error creating product: " ,err)
+	
+	return res.status(500).send("error while creating product")}else{
+	res.status(201).json({ message: 'Product added successfully', productId: results.insertId });
+	    }
+})
+router.put('products/:id/edit',(req,res)=>{
+
 });
-router.put();
-router.delete();
+router.delete('products/:id/dlt);
 
 export default router;
