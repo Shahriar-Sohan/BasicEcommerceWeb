@@ -156,8 +156,20 @@ function ProductForm(props) {
         },
   })
 
-  function onSubmit(values) {
+  async function onSubmit(values) {
     // In a real application, this would send data to your API
+    try{
+      const response = await fetch("localhost:5001/products/add",
+                                    {
+                                      method: isEditMode ? "PUT" : "POST",
+                                      headers: {
+                                        "Content-Type": "application/json"
+                                      },
+                                      body: JSON.stringify(values)
+                                    })
+    }catch{
+      
+    }
     console.log(values)
     console.log("Image URL:", imageUrl)
     console.log("Variants:", variants)
