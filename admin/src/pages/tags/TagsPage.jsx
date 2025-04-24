@@ -19,16 +19,16 @@ import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 
 // Mock data for tags
-const tags = [
-  { id: 1, name: "Summer" },
-  { id: 2, name: "Winter" },
-  { id: 3, name: "Casual" },
-  { id: 4, name: "Formal" },
-  { id: 5, name: "Sport" },
-  { id: 6, name: "Outdoor" },
-  { id: 7, name: "Sustainable" },
-  { id: 8, name: "Limited Edition" },
-]
+//const tags = [
+//  { id: 1, name: "Summer" },
+//  { id: 2, name: "Winter" },
+//  { id: 3, name: "Casual" },
+//  { id: 4, name: "Formal" },
+//  { id: 5, name: "Sport" },
+//  { id: 6, name: "Outdoor" },
+//  { id: 7, name: "Sustainable" },
+//  { id: 8, name: "Limited Edition" },
+//]
 
 function TagsPage() {
   const [search, setSearch] = useState("")
@@ -39,7 +39,12 @@ const response = await fetch("http://localhost:5001/tags",{
 "content-type" = 'application/json'
 	},
 })
+	
 },[])
+	useEffect(async ()=>{
+	const response = await fetch()
+	},[])
+	const tags = response;
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
