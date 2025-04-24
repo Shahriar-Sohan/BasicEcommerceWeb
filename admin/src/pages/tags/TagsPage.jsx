@@ -32,7 +32,14 @@ const tags = [
 
 function TagsPage() {
   const [search, setSearch] = useState("")
-
+useEffect(async ()=>{
+const response = await fetch("http://localhost:5001/tags",{
+	method: "GET",
+	header: {
+"content-type" = 'application/json'
+	},
+})
+},[])
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
