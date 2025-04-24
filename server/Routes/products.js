@@ -55,46 +55,67 @@ router.get('/products/:id', (req, res) => {
 
 router.post('/products/add', (req, res) => {
     const { title, description, price, category, brand, gender, tag, size, color, discount, featuredProduct, newArrival } = req.body;
-    const sql = `
-    INSERT INTO products (image_id, 
-    category_id,
-    gender_id,
-    brand_id, 
-    tag_id,
-    variant_id, 
-    product_title, 
-    product_description, 
-    product_price, 
-    product_discount, 
-    is_featured, is_new)
-			VALUES(
-					1,
-					(SELECT category_id FROM product_categories WHERE category_name = ?),
-					(SELECT gender_id FROM product_gender WHERE gender_name = ?),
-					(SELECT brand_id FROM product_brand WHERE brand_name = ?),
-					(SELECT tag_id FROM product_tags WHERE tag_name = ?),
-					(SELECT variant_id FROM product_variants WHERE size = ? AND color = ?),
-					?,
-					?,
-					?,
-					?,
-					?,
-					?)
-			`
-    const values = [category, gender, brand, tag, size, color, title, description, price, discount, featuredProduct, newArrival];
     if (!title || !category || !brand || !gender || !size || !color) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
-    db.query(sql, values, (err, result) => {
-        if (err) {
-            console.error("error creating product: ", err)
-            return res.status(500).send("error while creating product")
-        } else {
-            res.status(201).json({ message: 'Product added successfully', productId: result.insertId });
-        }
-    })
 
+    db.query(
+      "SELECT variant_id FROM product_variants WHERE size = ? AND color = ?",
+      [size, color],
+      (variantErr, variantResults) => {
+        if (variantErr) {
+          console.error("Error checking variant:", variantErr);
+          return res.status(500).send("Error checking variant");
+        }
+
+        if (variantResults.length > 0) {
+          insertProduct(variantResults[0].variant_id);
+        } else {
+          db.query(
+            "INSERT INTO product_variants (size, color) VALUES (?, ?)",
+            [size, color],
+            (insertErr, insertResult) => {
+              if (insertErr) {
+                console.error("Error inserting variant:", insertErr);
+                return res.status(500).send("Error inserting variant");
+              }
+              insertProduct(insertResult.insertId);
+            }
+          );
+        }
+      }
+    );
+
+    function insertProduct(variantId) {
+      const sql = `
+        INSERT INTO products (
+          image_id, category_id, gender_id, brand_id, tag_id, variant_id,
+          product_title, product_description, product_price, product_discount,
+          is_featured, is_new
+        ) VALUES (
+          1,
+          (SELECT category_id FROM product_categories WHERE category_name = ?),
+          (SELECT gender_id FROM product_gender WHERE gender_name = ?),
+          (SELECT brand_id FROM product_brand WHERE brand_name = ?),
+          (SELECT tag_id FROM product_tags WHERE tag_name = ?),
+          ?,
+          ?, ?, ?, ?, ?, ?
+        )
+      `;
+      const values = [category, gender, brand, tag, variantId, title, description, price, discount, featuredProduct, newArrival];
+      db.query(sql, values, (err, result) => {
+        if (err) {
+          console.error("error creating product: ", err);
+          return res.status(500).send("error while creating product");
+        } else {
+          res.status(201).json({ message: 'Product added successfully', productId: result.insertId });
+        }
+      });
+    }
+
+    return; // Prevents double response
 });
+
 // router.put('products/:id/edit', (req, res) => {
 
 // });

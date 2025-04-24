@@ -158,25 +158,41 @@ function ProductForm(props) {
 
   async function onSubmit(values) {
     // In a real application, this would send data to your API
-    try{
-      const response = await fetch("localhost:5001/products/add",
-                                    {
-                                      method: isEditMode ? "PUT" : "POST",
-                                      headers: {
-                                        "Content-Type": "application/json"
-                                      },
-                                      body: JSON.stringify(values)
-                                    })
-    }catch{
-      
-    }
-    console.log(values)
-    console.log("Image URL:", imageUrl)
-    console.log("Variants:", variants)
-    console.log("Tags:", selectedTags)
+    try {
+      const selectedCategory = categories.find(c => c.id.toString() === values.category_id)?.name;
+      const selectedGender = genders.find(g => g.id.toString() === values.gender_id)?.name;
+      const selectedBrand = brands.find(b => b.id.toString() === values.brand_id)?.name;
+      const selectedTag = tags.find(t => selectedTags.includes(t.id))?.name;
+      const selectedVariant = variants[0] || {}; // Assuming one variant for now
 
+      const payload = {
+        title: values.title,
+        description: values.description,
+        price: values.price,
+        discount: values.discount,
+        category: selectedCategory,
+        brand: selectedBrand,
+        gender: selectedGender,
+        tag: selectedTag,
+        size: selectedVariant.size,
+        color: selectedVariant.color,
+        featuredProduct: values.is_featured,
+        newArrival: values.is_new
+      };
+
+      const response = await fetch("http://localhost:5001/products/add", {
+        method: isEditMode ? "PUT" : "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+    } catch {
+      console.error("fetch is not working");
+    }
+    console.log("sending to backend", values);
     // Redirect back to products list after submission
-    navigate("/dashboard/products")
+    navigate("/dashboard/products");
   }
 
   const handleTabChange = (event, newValue) => {
@@ -187,7 +203,7 @@ function ProductForm(props) {
     <Box component="form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pb-10">
       <Tabs value={tabValue} onChange={handleTabChange} className="w-full">
         <Tab value="basic" label="Basic Info" />
-        <Tab value="images" label="Images" />
+        {/* <Tab value="images" label="Images" /> */}
         <Tab value="variants" label="Variants" />
         <Tab value="tags" label="Tags" />
       </Tabs>
@@ -291,7 +307,7 @@ function ProductForm(props) {
           </FormControl>
         </Box>
       )}
-      {tabValue === "images" && (
+      {/* {tabValue === "images" && (
         <Box className="space-y-4 pt-4">
           <Card>
             <CardContent className="pt-6">
@@ -308,7 +324,7 @@ function ProductForm(props) {
             </CardContent>
           </Card>
         </Box>
-      )}
+      )} */}
       {tabValue === "variants" && (
         <Box className="space-y-4 pt-4">
           <Card>

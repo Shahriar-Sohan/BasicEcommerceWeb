@@ -5,6 +5,7 @@ import cors from 'cors'
 
 import testRoute from './Routes/test.js'
 import productRoute from './Routes/products.js'
+import categoryRoute from './Routes/categories.js'
 
 // Load environment variables
 dotenv.config();
@@ -42,7 +43,7 @@ db.connect((err)=>{
 // Middleware to parse JSON
 app.use(express.json())
 
-app.use('/', testRoute,productRoute);
+app.use('/', testRoute,productRoute,categoryRoute);
 
 app.get('/dev',(req,res)=>{
     res.send('Backend is running!');
