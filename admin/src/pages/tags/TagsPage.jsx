@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   Box,
   Button,
@@ -18,33 +18,29 @@ import AddIcon from "@mui/icons-material/Add"
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 
-// Mock data for tags
-//const tags = [
-//  { id: 1, name: "Summer" },
-//  { id: 2, name: "Winter" },
-//  { id: 3, name: "Casual" },
-//  { id: 4, name: "Formal" },
-//  { id: 5, name: "Sport" },
-//  { id: 6, name: "Outdoor" },
-//  { id: 7, name: "Sustainable" },
-//  { id: 8, name: "Limited Edition" },
-//]
 
 function TagsPage() {
   const [search, setSearch] = useState("")
-useEffect(async ()=>{
-const response = await fetch("http://localhost:5001/tags",{
-	method: "GET",
-	header: {
-"content-type" = 'application/json'
-	},
-})
-	
-},[])
-	useEffect(async ()=>{
-	const response = await fetch()
-	},[])
-	const tags = response;
+  const [tags, setTags] = useState([])
+
+  useEffect(() => {
+    (async function (){
+      const response = await fetch("http://localhost:5001/tags", {
+        method: "GET",
+        header: {
+          "content-type": 'application/json'
+        },
+      })
+      const data = await response.json();
+      setTags(data)
+    })();
+
+  }, [])
+
+  function handleDelete(tagId){
+    const response =  fetch("http://localhost:5001/tags/")
+  }
+  
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -85,18 +81,18 @@ const response = await fetch("http://localhost:5001/tags",{
           <TableBody>
             {tags
               .filter((tag) =>
-                tag.name.toLowerCase().includes(search.toLowerCase())
+                tag.tag_name.toLowerCase().includes(search.toLowerCase())
               )
               .map((tag) => (
-                <TableRow key={tag.id}>
+                <TableRow key={tag.tag_id}>
                   <TableCell component="th" scope="row">
-                    {tag.name}
+                    {tag.tag_name}
                   </TableCell>
                   <TableCell align="right">
                     <IconButton>
                       <EditIcon />
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={()=>handleDelete(tag.tag_id)}>
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
