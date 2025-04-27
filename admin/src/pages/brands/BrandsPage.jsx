@@ -19,9 +19,9 @@ import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 
 // Mock data for brands
-const brands = [
-  { id: 1, name: "RivalRay" },
-  { id: 2, name: "DenimCo" },
+//const brands = [
+//  { id: 1, name: "RivalRay" },
+  //{ id: 2, name: "DenimCo" },
   { id: 3, name: "Floralia" },
   { id: 4, name: "SportElite" },
   { id: 5, name: "WinterWarm" },

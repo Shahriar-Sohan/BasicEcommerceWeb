@@ -38,7 +38,10 @@ function TagsPage() {
   }, [])
 
   function handleDelete(tagId){
-    const response =  fetch("http://localhost:5001/tags/")
+    const response =  fetch(`http://localhost:5001/tags/dlt/${tagId}`,{
+	    method: 'DELETE',
+
+    })
   }
   
   return (
