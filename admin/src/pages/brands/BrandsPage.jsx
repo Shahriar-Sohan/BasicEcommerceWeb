@@ -22,14 +22,18 @@ import DeleteIcon from "@mui/icons-material/Delete"
 //const brands = [
 //  { id: 1, name: "RivalRay" },
   //{ id: 2, name: "DenimCo" },
-  { id: 3, name: "Floralia" },
+{ id: 3, name: "Floralia" },
   { id: 4, name: "SportElite" },
   { id: 5, name: "WinterWarm" },
 ]
 
 function BrandsPage() {
   const [search, setSearch] = useState("")
-
+useEffect(()=>{
+const response = (async ()=>{
+const response = await fetch()
+})()
+},[])
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
