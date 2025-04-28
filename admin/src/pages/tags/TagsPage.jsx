@@ -12,36 +12,81 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Snackbar,
+  Alert,
 } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddIcon from "@mui/icons-material/Add"
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
-
+import AddTagDialog from "../../components/AddTagDialog";
 
 function TagsPage() {
   const [search, setSearch] = useState("")
   const [tags, setTags] = useState([])
+  const [open, setOpen] = useState(false);
+  // const [newTagName, setNewTagName] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
+  async function fetchTags(){
+    const response = await fetch("http://localhost:5001/tags", {
+      method: "GET",
+      headers: {
+        "content-type": 'application/json'
+      },
+    })
+    const data = await response.json();
+    setTags(data)
+  };
 
   useEffect(() => {
-    (async function (){
-      const response = await fetch("http://localhost:5001/tags", {
-        method: "GET",
-        header: {
-          "content-type": 'application/json'
-        },
-      })
-      const data = await response.json();
-      setTags(data)
-    })();
-
+    fetchTags();
   }, [])
 
-  function handleDelete(tagId){
-    const response =  fetch(`http://localhost:5001/tags/dlt/${tagId}`,{
+  async function handleDelete(tagId){
+
+    const response = await fetch(`http://localhost:5001/tags/dlt/${tagId}`,{
 	    method: 'DELETE',
 
     })
+    try{
+      if(response.ok){
+        fetchTags();
+        setSnackbarMessage("Tag deleted successfully!");
+        setSnackbarOpen(true);
+      }else {
+        console.error('Failed to delete tag');
+      }
+
+    }catch (error) {
+      console.error('Error while deleting tag:', error);
+    }
+  }
+
+  async function handleAddTag(tagName){
+    
+    const response = await fetch('http://localhost:5001/tags/add', {
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify({tag_name: tagName})
+      
+    });
+    
+    try {
+      if (response.ok) {
+        fetchTags();
+        setSnackbarMessage("Tag added successfully!");
+        setSnackbarOpen(true);
+        setOpen(false); 
+      } else {
+        console.error('Failed to add a tag');
+      }
+    } catch (error) {
+      console.error('Error while adding tag:', error);
+    }
   }
   
   return (
@@ -50,7 +95,7 @@ function TagsPage() {
         <Typography variant="h4" fontWeight="bold">
           Tags
         </Typography>
-        <Button variant="contained" startIcon={<AddIcon />}>
+        <Button variant="contained" startIcon={<AddIcon />} onClick={() => setOpen(true)}>
           Add Tag
         </Button>
       </Box>
@@ -104,6 +149,21 @@ function TagsPage() {
           </TableBody>
         </Table>
       </TableContainer>
+      <AddTagDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        onSubmit={(newTagName) => handleAddTag(newTagName)}
+      />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={() => setSnackbarOpen(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert severity="success" onClose={() => setSnackbarOpen(false)}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   )
 }
