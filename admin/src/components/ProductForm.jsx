@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import {
   TextField,
@@ -24,14 +24,8 @@ import ImageUpload from "./ImageUpload.jsx"
 import VariantManager from "./VariantManager.jsx"
 import TagSelector from "./TagSelector.jsx"
 
-// Mock data for dropdowns
-const categories = [
-  { id: 1, name: "Tops" },
-  { id: 2, name: "Pants" },
-  { id: 3, name: "Dresses" },
-  { id: 4, name: "Shorts" },
-  { id: 5, name: "Accessories" },
-]
+// data for dropdowns
+
 
 const genders = [
   { id: 1, name: "Men" },
@@ -48,16 +42,17 @@ const brands = [
   { id: 5, name: "WinterWarm" },
 ]
 
-const tags = [
-  { id: 1, name: "Summer" },
-  { id: 2, name: "Winter" },
-  { id: 3, name: "Casual" },
-  { id: 4, name: "Formal" },
-  { id: 5, name: "Sport" },
-  { id: 6, name: "Outdoor" },
-  { id: 7, name: "Sustainable" },
-  { id: 8, name: "Limited Edition" },
-]
+// const tags = [
+//   { id: 1, name: "Summer" },
+//   { id: 2, name: "Winter" },
+//   { id: 3, name: "Casual" },
+//   { id: 4, name: "Formal" },
+//   { id: 5, name: "Sport" },
+//   { id: 6, name: "Outdoor" },
+//   { id: 7, name: "Sustainable" },
+//   { id: 8, name: "Limited Edition" },
+// ]
+
 
 // Mock product data for edit mode
 const mockProduct = {
@@ -111,6 +106,56 @@ function ProductForm(props) {
   const { productId } = props
   const navigate = useNavigate()
   const isEditMode = !!productId
+
+  const [tags, setTags] = useState([])
+  
+
+  async function fetchTags(){
+    const response = await fetch("http://localhost:5001/tags", {
+      method: "GET",
+      headers: {
+        "content-type": 'application/json'
+      },
+    })
+    const data = await response.json();
+    setTags(data) 
+  };
+  
+  
+
+  const [categories, setCategories] = useState([])
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch("http://localhost:5001/categories");
+      const data = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error("Error while fetching categories", error);
+    }
+  };
+
+  const [brands, setBrands] = useState([])
+
+  const fetchBrands = async () => {
+    try {
+      const response = await fetch("http://localhost:5001/brands");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch brands: ${response.status}`);
+      }
+      const data = await response.json();
+      setBrands(data);
+    } catch (error) {
+      console.error("Error fetching brands:", error);
+    }
+  };
+
+  useEffect(()=>{
+    fetchTags()
+    fetchCategories()
+    fetchBrands()
+  },[])
+  
 
   // State for image upload
   const [imageUrl, setImageUrl] = useState(isEditMode ? mockProduct.image_url : "")
@@ -254,8 +299,8 @@ function ProductForm(props) {
               <InputLabel>Category</InputLabel>
               <Select value={form.watch("category_id") || ""} {...form.register("category_id")}>
                 {categories.map((category) => (
-                  <MenuItem key={category.id} value={category.id.toString()}>
-                    {category.name}
+                  <MenuItem key={category.category_id} value={category.category_id.toString()}>
+                    {category.category_name}
                   </MenuItem>
                 ))}
               </Select>
@@ -276,8 +321,8 @@ function ProductForm(props) {
               <InputLabel>Brand</InputLabel>
               <Select value={form.watch("brand_id") || ""} {...form.register("brand_id")}>
                 {brands.map((brand) => (
-                  <MenuItem key={brand.id} value={brand.id.toString()}>
-                    {brand.name}
+                  <MenuItem key={brand.brand_id} value={brand.brand_id.toString()}>
+                    {brand.brand_name}
                   </MenuItem>
                 ))}
               </Select>

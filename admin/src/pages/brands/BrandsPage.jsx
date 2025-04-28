@@ -63,10 +63,20 @@ function BrandsPage() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [openAddBrandDialog, setOpenAddBrandDialog] = useState(false);
 
-  // Fetch brands
+  // Fetch brands 
   const fetchBrands = async () => {
-    const response = await fetch("http://localhost:5001/brands");
-    setBrands(await response.json());
+    try {
+      const response = await fetch("http://localhost:5001/brands");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch brands: ${response.status}`);
+      }
+      const data = await response.json();
+      setBrands(data);
+    } catch (error) {
+      console.error("Error fetching brands:", error);
+      setSnackbarMessage("Failed to load brands!");
+      setSnackbarOpen(true);
+    }
   };
 
   useEffect(() => {
