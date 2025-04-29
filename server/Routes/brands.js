@@ -32,7 +32,7 @@ router.post('/brands/add', (req, res) => {
 
 router.delete('/brands/dlt/:id', (req, res) => {
   const { id } = req.params;
-  const sql = 'DELETE FROM product_brand WHERE id = ?';
+  const sql = 'DELETE FROM product_brand WHERE brand_id = ?';
   db.query(sql, [id], (err, result) => {
     if (err) {
       console.error('Error while deleting brand:', err);

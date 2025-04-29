@@ -1,72 +1,33 @@
 @import "tailwindcss";
 
-:where(:root) {
-  --background: rgb(248, 250, 252);
-  --foreground: rgb(15, 23, 42);
-  
-  --card: rgb(243, 246, 249);
-  --card-foreground: rgb(17, 24, 39);
-  
-  --popover: rgb(240, 244, 248);
-  --popover-foreground: rgb(17, 24, 39);
-  
-  --primary: rgb(37, 59, 115);
-  --primary-foreground: rgb(240, 245, 250);
-  
-  --secondary: rgb(226, 232, 240);
-  --secondary-foreground: rgb(30, 41, 59);
-  
-  --muted: rgb(233, 237, 241);
-  --muted-foreground: rgb(100, 116, 139);
-  
-  --accent: rgb(224, 231, 240);
-  --accent-foreground: rgb(30, 41, 59);
-  
-  --destructive: rgb(225, 29, 72);
-  --destructive-foreground: rgb(255, 255, 255);
-  
-  --border: rgb(226, 232, 240);
-  --input: rgb(226, 232, 240);
-  --ring: rgb(37, 59, 115);
-  
-  --radius: 0.5rem;
+/* Base styles for light mode */
+:root {
+  --background: rgb(248, 250, 252);  /* Light mode background */
+  --foreground: rgb(15, 23, 42);      /* Light mode text */
+  --primary: rgb(37, 59, 115);        /* Primary color */
+  --secondary: rgb(226, 232, 240);    /* Secondary color */
+  --card-bg: rgb(255, 255, 255);      /* Card background in light mode */
+  --card-foreground: rgb(0, 0, 0);    /* Card text color */
 }
 
+/* Dark mode styles */
 :where(.dark) {
-  --background: rgb(15, 23, 42);
-  --foreground: rgb(241, 245, 249);
-  
-  --card: rgb(22, 32, 51);
-  --card-foreground: rgb(241, 245, 249);
-  
-  --popover: rgb(30, 41, 59);
-  --popover-foreground: rgb(241, 245, 249);
-  
-  --primary: rgb(148, 163, 219);
-  --primary-foreground: rgb(15, 23, 42);
-  
-  --secondary: rgb(51, 65, 85);
-  --secondary-foreground: rgb(226, 232, 240);
-  
-  --muted: rgb(51, 65, 85);
-  --muted-foreground: rgb(148, 163, 184);
-  
-  --accent: rgb(56, 72, 95);
-  --accent-foreground: rgb(226, 232, 240);
-  
-  --destructive: rgb(225, 29, 72);
-  --destructive-foreground: rgb(241, 245, 249);
-  
-  --border: rgb(51, 65, 85);
-  --input: rgb(51, 65, 85);
-  --ring: rgb(148, 163, 219);
+  --background: rgb(15, 23, 42);      /* Dark mode background */
+  --foreground: rgb(241, 245, 249);  /* Dark mode text */
+  --primary: rgb(148, 163, 219);     /* Primary color */
+  --secondary: rgb(51, 65, 85);       /* Secondary color */
+  --card-bg: rgb(22, 32, 51);         /* Card background in dark mode */
+  --card-foreground: rgb(241, 245, 249); /* Card text color */
 }
 
-* {
-  border-color: var(--border);
-}
-
+/* Apply background and text color */
 body {
   background-color: var(--background);
   color: var(--foreground);
+}
+
+/* Card background */
+.card {
+  background-color: var(--card-bg);
+  color: var(--card-foreground);
 }

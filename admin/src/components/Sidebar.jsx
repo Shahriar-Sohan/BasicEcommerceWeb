@@ -52,11 +52,15 @@ function Sidebar() {
   return (
     <Box
       sx={{
-        height: "100%",
+        display: "flex", // Added flex layout
+        flexDirection: "column",
+        height: "80vh", // Ensures the sidebar takes full height of viewport
+        width: "250px",
         overflowY: "auto",
         borderRight: 1,
         borderColor: "divider",
-        pt: 8,
+        minHeight: "100%", // Ensure the sidebar stretches to the full height
+        pt: 7, // Adjusted padding for better spacing (you can tweak it for responsiveness)
       }}
     >
       <List>
