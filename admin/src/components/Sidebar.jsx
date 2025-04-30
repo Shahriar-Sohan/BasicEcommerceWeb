@@ -30,6 +30,11 @@ const routes = [
     href: "/dashboard/categories",
   },
   {
+    label: "Genders",
+    icon: <PeopleIcon color="secondary" />,
+    href: "/dashboard/genders",
+  },
+  {
     label: "Tags",
     icon: <LocalOfferIcon color="warning" />,
     href: "/dashboard/tags",

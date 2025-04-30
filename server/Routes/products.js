@@ -86,32 +86,32 @@ router.post('/products/add', (req, res) => {
       }
     );
 
-    function insertProduct(variantId) {
-      const sql = `
-        INSERT INTO products (
-          image_id, category_id, gender_id, brand_id, tag_id, variant_id,
-          product_title, product_description, product_price, product_discount,
-          is_featured, is_new
-        ) VALUES (
-          1,
-          (SELECT category_id FROM product_categories WHERE category_name = ?),
-          (SELECT gender_id FROM product_gender WHERE gender_name = ?),
-          (SELECT brand_id FROM product_brand WHERE brand_name = ?),
-          (SELECT tag_id FROM product_tags WHERE tag_name = ?),
-          ?,
-          ?, ?, ?, ?, ?, ?
-        )
-      `;
-      const values = [category, gender, brand, tag, variantId, title, description, price, discount, featuredProduct, newArrival];
-      db.query(sql, values, (err, result) => {
-        if (err) {
-          console.error("error creating product: ", err);
-          return res.status(500).send("error while creating product");
-        } else {
-          res.status(201).json({ message: 'Product added successfully', productId: result.insertId });
-        }
-      });
-    }
+      function insertProduct(variantId) {
+        const sql = `
+          INSERT INTO products (
+            image_id, category_id, gender_id, brand_id, tag_id, variant_id,
+            product_title, product_description, product_price, product_discount,
+            is_featured, is_new
+          ) VALUES (
+            1,
+            (SELECT category_id FROM product_categories WHERE category_name = ?),
+            (SELECT gender_id FROM product_gender WHERE gender_name = ?),
+            (SELECT brand_id FROM product_brand WHERE brand_name = ?),
+            (SELECT tag_id FROM product_tags WHERE tag_name = ?),
+            ?,
+            ?, ?, ?, ?, ?, ?
+          )
+        `;
+        const values = [category, gender, brand, tag, variantId, title, description, price, discount, featuredProduct, newArrival];
+        db.query(sql, values, (err, result) => {
+          if (err) {
+            console.error("error creating product: ", err);
+            return res.status(500).send("error while creating product");
+          } else {
+            res.status(201).json({ message: 'Product added successfully', productId: result.insertId });
+          }
+        });
+      }
 
     return; // Prevents double response
 });

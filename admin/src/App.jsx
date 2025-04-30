@@ -7,6 +7,7 @@ import EditProductPage from "./pages/products/EditProductPage.jsx"
 import CategoriesPage from "./pages/categories/CategoriesPage.jsx"
 import TagsPage from "./pages/tags/TagsPage.jsx"
 import BrandsPage from "./pages/brands/BrandsPage.jsx"
+import GendersPage from "./pages/genders/GendersPage.jsx"
 
 function App({ isDarkMode, toggleTheme }) {
   return (
@@ -18,6 +19,7 @@ function App({ isDarkMode, toggleTheme }) {
         <Route path="products/new" element={<NewProductPage />} />
         <Route path="products/:productId" element={<EditProductPage />} />
         <Route path="categories" element={<CategoriesPage />} />
+        <Route path="genders" element={<GendersPage />} />
         <Route path="tags" element={<TagsPage />} />
         <Route path="brands" element={<BrandsPage />} />
       </Route>

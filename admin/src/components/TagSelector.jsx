@@ -18,17 +18,17 @@ function TagSelector({ availableTags, selectedTags, onChange }) {
 
       <Box display="flex" flexWrap="wrap" gap={2}>
         {availableTags.map((tag) => {
-          const isSelected = selectedTags.includes(tag.id);
+          const isSelected = selectedTags.includes(tag.tag_id);
 
           return (
             <Chip
-              key={tag.id}
+              key={tag.tag_id}
               label={
                 <>
                   {isSelected && (
                     <CheckIcon sx={{ mr: 1, fontSize: "16px" }} />
                   )}
-                  {tag.name}
+                  {tag.tag_name}
                 </>
               }
               variant={isSelected ? "filled" : "outlined"}
@@ -44,7 +44,7 @@ function TagSelector({ availableTags, selectedTags, onChange }) {
                   backgroundColor: isSelected ? "primary.dark" : "grey.800",
                 },
               }}
-              onClick={() => toggleTag(tag.id)}
+              onClick={() => toggleTag(tag.tag_id)}
             />
           );
         })}

@@ -24,13 +24,6 @@ import ImageUpload from "./ImageUpload.jsx";
 import VariantManager from "./VariantManager.jsx";
 import TagSelector from "./TagSelector.jsx";
 
-// Data for dropdowns
-const genders = [
-  { id: 1, name: "Men" },
-  { id: 2, name: "Women" },
-  { id: 3, name: "Unisex" },
-  { id: 4, name: "Kids" },
-];
 
 // Mock product data for edit mode
 const mockProduct = {
@@ -81,6 +74,8 @@ function ProductForm(props) {
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [genders, setGenders] = useState([])
+
   const [imageUrl, setImageUrl] = useState(isEditMode ? mockProduct.image_url : "");
   const [variants, setVariants] = useState(isEditMode ? mockProduct.variants : []);
   const [selectedTags, setSelectedTags] = useState(isEditMode ? mockProduct.tags : []);
@@ -112,10 +107,21 @@ function ProductForm(props) {
     }
   }
 
+  async function fetchGenders() {
+    try {
+      const response = await fetch("http://localhost:5001/genders");
+      const data = await response.json();
+      setGenders(data);
+    } catch (error) {
+      console.error("Error fetching genders:", error);
+    }
+  }
+
   useEffect(() => {
     fetchTags();
     fetchCategories();
     fetchBrands();
+    fetchGenders();
   }, []);
 
   const form = useForm({
@@ -184,99 +190,88 @@ function ProductForm(props) {
 
   return (
     <Box component="form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pb-10">
-      
+  
       {/* Title only */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
         <Typography variant="h4" fontWeight="bold" color="white">
           {isEditMode ? "Edit Product" : "Add New Product"}
         </Typography>
       </Box>
-
-      {/* Tabs */}
-      <Tabs value={tabValue} onChange={handleTabChange}>
-        <Tab value="basic" label="Basic Info" />
-        <Tab value="variants" label="Variants" />
-        <Tab value="tags" label="Tags" />
-      </Tabs>
-
-      {/* Tab Content */}
-      {tabValue === "basic" && (
-        <Box className="space-y-4 pt-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Your fields: title, price, discount, etc */}
-            <FormControl fullWidth margin="normal">
-              <TextField label="Product Title" {...form.register("title")} />
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-              <TextField label="Price ($)" type="number" {...form.register("price")} />
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-              <TextField label="Discount (%)" type="number" {...form.register("discount")} />
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-              <TextField label="Stock Quantity" type="number" {...form.register("stock")} />
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-              <InputLabel>Category</InputLabel>
-              <Select {...form.register("category_id")} value={form.watch("category_id") || ""}>
-                {categories.map((category) => (
-                  <MenuItem key={category.category_id} value={category.category_id.toString()}>
-                    {category.category_name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-              <InputLabel>Gender</InputLabel>
-              <Select {...form.register("gender_id")} value={form.watch("gender_id") || ""}>
-                {genders.map((gender) => (
-                  <MenuItem key={gender.id} value={gender.id.toString()}>
-                    {gender.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-              <InputLabel>Brand</InputLabel>
-              <Select {...form.register("brand_id")} value={form.watch("brand_id") || ""}>
-                {brands.map((brand) => (
-                  <MenuItem key={brand.brand_id} value={brand.brand_id.toString()}>
-                    {brand.brand_name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormGroup row>
-              <FormControlLabel control={<Checkbox {...form.register("is_featured")} />} label="Featured" />
-              <FormControlLabel control={<Checkbox {...form.register("is_new")} />} label="New Arrival" />
-            </FormGroup>
-          </div>
+  
+      {/* Combined Form Sections */}
+      <Box className="space-y-4 pt-4">
+  
+        {/* Basic Info */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormControl fullWidth margin="normal">
-            <TextField label="Description" multiline rows={4} {...form.register("description")} />
+            <TextField label="Product Title" {...form.register("title")} />
           </FormControl>
-        </Box>
-      )}
-
-      {/* Other tabs */}
-      {tabValue === "variants" && (
-        <Box className="space-y-4 pt-4">
-          <Card>
-            <CardContent>
-              <VariantManager variants={variants} onChange={setVariants} />
-            </CardContent>
-          </Card>
-        </Box>
-      )}
-      {tabValue === "tags" && (
-        <Box className="space-y-4 pt-4">
-          <Card>
-            <CardContent>
-              <TagSelector availableTags={tags} selectedTags={selectedTags} onChange={setSelectedTags} />
-            </CardContent>
-          </Card>
-        </Box>
-      )}
-
+          <FormControl fullWidth margin="normal">
+            <TextField label="Price ($)" type="number" {...form.register("price")} />
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <TextField label="Discount (%)" type="number" {...form.register("discount")} />
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <TextField label="Stock Quantity" type="number" {...form.register("stock")} />
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Category</InputLabel>
+            <Select {...form.register("category_id")} value={form.watch("category_id") || ""}>
+              {categories.map((category) => (
+                <MenuItem key={category.category_id} value={category.category_id.toString()}>
+                  {category.category_name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Gender</InputLabel>
+            <Select {...form.register("gender_id")} value={form.watch("gender_id") || ""}>
+              {genders.map((gender) => (
+                <MenuItem key={gender.gender_id} value={gender.gender_id.toString()}>
+                  {gender.gender_name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Brand</InputLabel>
+            <Select {...form.register("brand_id")} value={form.watch("brand_id") || ""}>
+              {brands.map((brand) => (
+                <MenuItem key={brand.brand_id} value={brand.brand_id.toString()}>
+                  {brand.brand_name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormGroup row>
+            <FormControlLabel control={<Checkbox {...form.register("is_featured")} />} label="Featured" />
+            <FormControlLabel control={<Checkbox {...form.register("is_new")} />} label="New Arrival" />
+          </FormGroup>
+        </div>
+  
+        <FormControl fullWidth margin="normal">
+          <TextField label="Description" multiline rows={4} {...form.register("description")} />
+        </FormControl>
+  
+        {/* Variants */}
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>Variants</Typography>
+            <VariantManager variants={variants} onChange={setVariants} />
+          </CardContent>
+        </Card>
+  
+        {/* Tags */}
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>Tags</Typography>
+            <TagSelector availableTags={tags} selectedTags={selectedTags} onChange={setSelectedTags} />
+          </CardContent>
+        </Card>
+      </Box>
+  
       {/* Bottom Buttons */}
       <Box display="flex" justifyContent="flex-end" gap={2} mt={6}>
         <Button variant="outlined" onClick={() => navigate("/dashboard/products")}>
@@ -286,7 +281,7 @@ function ProductForm(props) {
           {isEditMode ? "Update Product" : "Create Product"}
         </Button>
       </Box>
-
+      
     </Box>
   );
 }
