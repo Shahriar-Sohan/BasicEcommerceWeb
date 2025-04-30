@@ -25,7 +25,7 @@ CREATE TABLE product_brand (
     brand_name VARCHAR(50) NOT NULL
 );
 
--- product_images (moved up)
+-- product_images 
 CREATE TABLE product_images (
     image_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     image_url VARCHAR(255) NOT NULL,

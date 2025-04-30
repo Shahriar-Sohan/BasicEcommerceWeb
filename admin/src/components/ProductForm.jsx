@@ -3,6 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import {
   TextField,
   Select,
@@ -11,26 +14,23 @@ import {
   FormControl,
   Checkbox,
   FormControlLabel,
-  Tabs,
-  Tab,
   Box,
   Card,
   CardContent,
   Button,
   Typography,
-  FormGroup
+  FormGroup,
 } from "@mui/material";
+
 import ImageUpload from "./ImageUpload.jsx";
 import VariantManager from "./VariantManager.jsx";
 import TagSelector from "./TagSelector.jsx";
-
 
 // Mock product data for edit mode
 const mockProduct = {
   id: 1,
   title: "Classic Cotton T-Shirt",
-  description:
-    "A comfortable cotton t-shirt perfect for everyday wear. Made with 100% organic cotton.",
+  description: "A comfortable cotton t-shirt perfect for everyday wear. Made with 100% organic cotton.",
   price: 29.99,
   discount: 0,
   category_id: 1,
@@ -51,7 +51,7 @@ const mockProduct = {
   tags: [1, 3, 7],
 };
 
-// Form schema
+// Form validation schema
 const formSchema = z.object({
   title: z.string().min(3, { message: "Product title must be at least 3 characters." }),
   description: z.string().optional(),
@@ -74,12 +74,46 @@ function ProductForm(props) {
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
-  const [genders, setGenders] = useState([])
-
+  const [genders, setGenders] = useState([]);
   const [imageUrl, setImageUrl] = useState(isEditMode ? mockProduct.image_url : "");
   const [variants, setVariants] = useState(isEditMode ? mockProduct.variants : []);
   const [selectedTags, setSelectedTags] = useState(isEditMode ? mockProduct.tags : []);
-  const [tabValue, setTabValue] = useState("basic");
+  const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
+
+  const showSnackbar = (message, severity = "success") => {
+    setSnackbar({ open: true, message, severity });
+  };
+
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: isEditMode
+      ? {
+        title: mockProduct.title,
+        description: mockProduct.description,
+        price: mockProduct.price,
+        discount: mockProduct.discount,
+        category_id: mockProduct.category_id.toString(),
+        gender_id: mockProduct.gender_id.toString(),
+        brand_id: mockProduct.brand_id.toString(),
+        is_featured: mockProduct.is_featured,
+        is_new: mockProduct.is_new,
+        stock: mockProduct.stock,
+        image_alt: mockProduct.image_alt,
+      }
+      : {
+        title: "",
+        description: "",
+        price: 0,
+        discount: 0,
+        category_id: "",
+        gender_id: "",
+        brand_id: "",
+        is_featured: false,
+        is_new: false,
+        stock: 0,
+        image_alt: "",
+      },
+  });
 
   async function fetchTags() {
     const response = await fetch("http://localhost:5001/tags");
@@ -93,7 +127,7 @@ function ProductForm(props) {
       const data = await response.json();
       setCategories(data);
     } catch (error) {
-      console.error("Error while fetching categories", error);
+      console.error("Error fetching categories", error);
     }
   }
 
@@ -124,37 +158,6 @@ function ProductForm(props) {
     fetchGenders();
   }, []);
 
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: isEditMode
-      ? {
-          title: mockProduct.title,
-          description: mockProduct.description,
-          price: mockProduct.price,
-          discount: mockProduct.discount,
-          category_id: mockProduct.category_id.toString(),
-          gender_id: mockProduct.gender_id.toString(),
-          brand_id: mockProduct.brand_id.toString(),
-          is_featured: mockProduct.is_featured,
-          is_new: mockProduct.is_new,
-          stock: mockProduct.stock,
-          image_alt: mockProduct.image_alt,
-        }
-      : {
-          title: "",
-          description: "",
-          price: 0,
-          discount: 0,
-          category_id: "",
-          gender_id: "",
-          brand_id: "",
-          is_featured: false,
-          is_new: false,
-          stock: 0,
-          image_alt: "",
-        },
-  });
-
   async function onSubmit(values) {
     try {
       const payload = {
@@ -163,45 +166,42 @@ function ProductForm(props) {
         price: values.price,
         discount: values.discount,
         category: categories.find((c) => c.category_id.toString() === values.category_id)?.category_name,
-        gender: genders.find((g) => g.id.toString() === values.gender_id)?.name,
+        gender: genders.find((g) => g.gender_id.toString() === values.gender_id)?.gender_name,
         brand: brands.find((b) => b.brand_id.toString() === values.brand_id)?.brand_name,
-        tag: tags.find((t) => selectedTags.includes(t.id))?.name,
-        size: variants[0]?.size,
-        color: variants[0]?.color,
+        tag: tags
+          .filter((t) => selectedTags.includes(t.tag_id))
+          .map((t) => t.tag_name),
+        size: variants[0]?.size || null,
+        color: variants[0]?.color || null,
         featuredProduct: values.is_featured,
         newArrival: values.is_new,
       };
 
-      await fetch("http://localhost:5001/products/add", {
+      const response = await fetch("http://localhost:5001/products/add", {
         method: isEditMode ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
-      navigate("/dashboard/products");
+      if (!response.ok) throw new Error("Server error");
+
+      showSnackbar(`Product ${isEditMode ? "updated" : "created"} successfully!`, "success");
+      setTimeout(() => navigate("/dashboard/products"), 1500);
     } catch (error) {
       console.error("Error submitting form:", error);
+      showSnackbar("Failed to submit product. Please try again.", "error");
     }
   }
 
-  const handleTabChange = (event, newValue) => {
-    setTabValue(newValue);
-  };
-
   return (
     <Box component="form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pb-10">
-  
-      {/* Title only */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
         <Typography variant="h4" fontWeight="bold" color="white">
           {isEditMode ? "Edit Product" : "Add New Product"}
         </Typography>
       </Box>
-  
-      {/* Combined Form Sections */}
+
       <Box className="space-y-4 pt-4">
-  
-        {/* Basic Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormControl fullWidth margin="normal">
             <TextField label="Product Title" {...form.register("title")} />
@@ -250,20 +250,18 @@ function ProductForm(props) {
             <FormControlLabel control={<Checkbox {...form.register("is_new")} />} label="New Arrival" />
           </FormGroup>
         </div>
-  
+
         <FormControl fullWidth margin="normal">
           <TextField label="Description" multiline rows={4} {...form.register("description")} />
         </FormControl>
-  
-        {/* Variants */}
+
         <Card>
           <CardContent>
             <Typography variant="h6" gutterBottom>Variants</Typography>
             <VariantManager variants={variants} onChange={setVariants} />
           </CardContent>
         </Card>
-  
-        {/* Tags */}
+
         <Card>
           <CardContent>
             <Typography variant="h6" gutterBottom>Tags</Typography>
@@ -271,8 +269,7 @@ function ProductForm(props) {
           </CardContent>
         </Card>
       </Box>
-  
-      {/* Bottom Buttons */}
+
       <Box display="flex" justifyContent="flex-end" gap={2} mt={6}>
         <Button variant="outlined" onClick={() => navigate("/dashboard/products")}>
           Cancel
@@ -281,7 +278,24 @@ function ProductForm(props) {
           {isEditMode ? "Update Product" : "Create Product"}
         </Button>
       </Box>
-      
+
+      {/* Snackbar */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <MuiAlert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          variant="filled"
+          elevation={6}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </MuiAlert>
+      </Snackbar>
     </Box>
   );
 }

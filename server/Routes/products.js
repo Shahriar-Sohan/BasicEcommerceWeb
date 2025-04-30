@@ -60,7 +60,7 @@ router.post('/products/add', (req, res) => {
     }
 
     db.query(
-      "SELECT variant_id FROM product_variants WHERE size = ? AND color = ?",
+      "SELECT variant_id FROM product_variant WHERE size = ? AND color = ?",
       [size, color],
       (variantErr, variantResults) => {
         if (variantErr) {
@@ -72,7 +72,7 @@ router.post('/products/add', (req, res) => {
           insertProduct(variantResults[0].variant_id);
         } else {
           db.query(
-            "INSERT INTO product_variants (size, color) VALUES (?, ?)",
+            "INSERT INTO product_variant (size, color) VALUES (?, ?)",
             [size, color],
             (insertErr, insertResult) => {
               if (insertErr) {
