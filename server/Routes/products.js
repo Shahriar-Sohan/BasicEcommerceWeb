@@ -119,6 +119,17 @@ router.post('/products/add', (req, res) => {
 // router.put('products/:id/edit', (req, res) => {
 
 // });
-// router.delete('products/:id/dlt');
+router.delete('products/:id/dlt',(req, res)=>{
+const {productId} = req.params;
+	const sql = `DELETE FROM products WHERE product_id = ?`;
+	db.query(sql, [productId], (err,result)=>{
+	if(err){
+	console.error()
+	return res.status(500).send("error while executing delete in database")
+	}else{
+	res.send("successfull")	
+	}
+	})
+});
 
 export default router;
