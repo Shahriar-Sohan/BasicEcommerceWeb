@@ -170,7 +170,7 @@ function ProductForm(props) {
         brand: brands.find((b) => b.brand_id.toString() === values.brand_id)?.brand_name,
         tag: tags
           .filter((t) => selectedTags.includes(t.tag_id))
-          .map((t) => t.tag_name),
+          .map((t) => t.tag_id),
         size: variants[0]?.size || null,
         color: variants[0]?.color || null,
         featuredProduct: values.is_featured,

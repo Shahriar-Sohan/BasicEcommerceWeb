@@ -48,4 +48,23 @@ router.delete('/genders/dlt/:id', (req, res) => {
   });
 });
 
+// PUT /genders/:id: Update a gender by ID
+router.put('/genders/:id', (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  if (!name) {
+    return res.status(400).send('Gender name is required for update');
+  }
+
+  const sql = 'UPDATE product_gender SET gender_name = ? WHERE gender_id = ?';
+  db.query(sql, [name, id], (err, result) => {
+    if (err) {
+      console.error('Error while updating gender:', err);
+      return res.status(500).send('Failed to update gender in database');
+    }
+    res.status(200).send('Gender updated successfully');
+  });
+});
+
 export default router;

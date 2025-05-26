@@ -47,5 +47,22 @@ router.delete('/tags/dlt/:id', (req, res)=>{
         }
     })
 })
+router.put('/tags/:id', (req, res) => {
+  const { id } = req.params;
+  const { tag_name } = req.body;
+
+  if (!tag_name) {
+    return res.status(400).send('Tag name is required for update');
+  }
+
+  const sql = 'UPDATE product_tags SET tag_name = ? WHERE tag_id = ?';
+  db.query(sql, [tag_name, id], (err, result) => {
+    if (err) {
+      console.error('Error while updating tag:', err);
+      return res.status(500).send('Failed to update tag in database');
+    }
+    res.status(200).send('Tag updated successfully');
+  });
+});
 
 export default router;

@@ -43,4 +43,22 @@ router.delete('/categories/dlt/:id', (req, res) => {
   });
 });
 
+router.put('/categories/:id', (req, res) => {
+  const { id } = req.params;
+  const { name, description } = req.body;
+
+  if (!name || !description) {
+    return res.status(400).send('Category name and description are required for update');
+  }
+
+  const sql = 'UPDATE product_categories SET category_name = ?, category_description = ? WHERE category_id = ?';
+  db.query(sql, [name, description, id], (err, result) => {
+    if (err) {
+      console.error('Error while updating category:', err);
+      return res.status(500).send('Failed to update category in database');
+    }
+    res.status(200).send('Category updated successfully');
+  });
+});
+
 export default router;
