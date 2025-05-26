@@ -2,6 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mysql from 'mysql2'
 import cors from 'cors'
+import authRoutes from './Routes/auth.js'
+
 
 import testRoute from './Routes/test.js'
 import productRoute from './Routes/products.js'
@@ -47,6 +49,7 @@ db.connect((err)=>{
 app.use(express.json())
 
 app.use('/', testRoute,productRoute,categoryRoute,tagsRoute,brandsRoute,genderRoute);
+app.use('/auth', authRoutes);
 
 app.get('/dev',(req,res)=>{
     res.send('Backend is running!');
